@@ -148,8 +148,9 @@ export default function LaporanPage() {
             </div>
           ))}
         </div>
+      )}
 
-      </div>
     </div>
-  );
+  </div>
+);
 }

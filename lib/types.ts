@@ -25,7 +25,7 @@ export interface Tree {
   code: string;
   species: string;
   indonesianName: string;
-  category: 'Pohon Buah' | 'Bakau Pesisir' | 'Pohon Rimba' | 'Kayu Multi-Guna';
+  category: 'Pohon Buah' | 'Bakau Pesisir' | 'Pohon Rimba' | 'Kayu Multi-Guna' | 'Pohon Hutan' | 'Mangrove';
   status: 'Tersedia' | 'Sudah Diadopsi';
   adoptionFee: number; // e.g. 100000 (Rp 100.000)
   plantedDate: string;
