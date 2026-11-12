@@ -335,20 +335,20 @@ export default function Navigation() {
                 <div className="inline-flex items-center border border-white/20 p-0.5 gap-1">
                   <button
                     onClick={() => setLanguage('id')}
-                    className={`px-4 py-1.5 text-xs font-mono font-bold uppercase transition-all duration-150 cursor-pointer rounded-none ${
+                    className={`px-4 py-1.5 text-xs font-bold uppercase tracking-wider transition-all duration-150 cursor-pointer rounded-none ${
                       language === 'id'
                         ? 'bg-white text-[#16276B]'
-                        : 'text-white/60 hover:text-white'
+                        : 'text-white/80 hover:text-white'
                     }`}
                   >
                     ID
                   </button>
                   <button
                     onClick={() => setLanguage('en')}
-                    className={`px-4 py-1.5 text-xs font-mono font-bold uppercase transition-all duration-150 cursor-pointer rounded-none ${
+                    className={`px-4 py-1.5 text-xs font-bold uppercase tracking-wider transition-all duration-150 cursor-pointer rounded-none ${
                       language === 'en'
                         ? 'bg-white text-[#16276B]'
-                        : 'text-white/60 hover:text-white'
+                        : 'text-white/80 hover:text-white'
                     }`}
                   >
                     EN

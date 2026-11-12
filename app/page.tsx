@@ -19,7 +19,7 @@ export default function HomePage() {
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] text-white">
             {t.hero.title1}
           </h1>
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-light text-white/70 tracking-tight leading-[1.08]">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-light text-white/85 tracking-tight leading-[1.08]">
             {t.hero.title2}
           </h1>
         </div>
@@ -30,16 +30,16 @@ export default function HomePage() {
           {/* Kolom Kiri: Garis Tipis 1 */}
           <div className="md:col-span-5 flex items-start gap-3">
             <div className="w-12 h-px bg-white/40 mt-3 shrink-0" />
-            <p className="text-sm sm:text-base text-white/90 leading-relaxed font-normal">
+            <p className="text-base sm:text-lg text-white leading-relaxed font-normal">
               {t.hero.desc1}
             </p>
           </div>
 
-          {/* Kolom Kanan: Garis Tipis 2 + Tombol Pil Minimalis */}
+          {/* Kolom Kanan: Garis Tipis 2 + Tombol Minimalis */}
           <div className="md:col-span-7 md:pl-10 space-y-6">
             <div className="flex items-start gap-3">
               <div className="w-16 h-px bg-white/40 mt-3 shrink-0" />
-              <p className="text-sm sm:text-base text-white/90 leading-relaxed font-normal">
+              <p className="text-base sm:text-lg text-white leading-relaxed font-normal">
                 {t.hero.desc2}
               </p>
             </div>
@@ -69,15 +69,15 @@ export default function HomePage() {
 
       {/* 2. HUBUNGI KAMI / KOLABORASI (#kontak) */}
       <section id="kontak" className="py-24 max-w-7xl mx-auto px-6 lg:px-12 w-full">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pt-8 border-t border-white/15">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pt-8 border-t border-white/20">
           <div className="space-y-2 max-w-xl">
-            <span className="text-xs font-bold uppercase tracking-wider text-white/70 block">
+            <span className="text-xs font-bold uppercase tracking-wider text-white/80 block">
               {t.contact.tag}
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
               {t.contact.title}
             </h2>
-            <p className="text-white/80 text-sm leading-relaxed">
+            <p className="text-white/90 text-base leading-relaxed">
               {t.contact.desc}
             </p>
           </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ArrowUpRight, ArrowRight, Check } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
 import { useLanguage } from '@/lib/LanguageContext';
 
 export default function BergabungPage() {
@@ -50,50 +50,38 @@ export default function BergabungPage() {
 
   return (
     <div className="text-white min-h-[calc(100vh-80px)] flex flex-col justify-between bg-transparent">
-      <div className="max-w-5xl mx-auto px-6 lg:px-12 py-14 md:py-24 w-full space-y-24">
+      <div className="max-w-5xl mx-auto px-6 lg:px-12 py-12 md:py-20 w-full space-y-20">
         
-        {/* 1. Header / Intro — Tipografi Editorial Bersih */}
-        <div className="space-y-6 max-w-3xl">
-          <div className="flex items-center gap-2">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-white/60 block">
-              {t.join.tag}
-            </span>
-            <span className="text-white/30">•</span>
-            <a
-              href="https://www.climatecardinals.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[11px] font-mono uppercase tracking-widest text-white/60 hover:text-white flex items-center gap-1 transition-colors underline underline-offset-4"
-            >
-              <span>climatecardinals.org</span>
-              <ArrowUpRight className="w-3 h-3" />
-            </a>
-          </div>
+        {/* 1. Header / Intro — Bersih, Tanpa Link Eksternal di Atas, Font Biasa */}
+        <div className="space-y-4 max-w-3xl">
+          <span className="text-xs sm:text-sm font-bold tracking-widest uppercase text-white/80 block">
+            {t.join.tag}
+          </span>
 
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] text-white">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-white">
             {t.join.title}
           </h1>
 
           <div className="flex items-start gap-4 pt-2">
             <div className="w-12 h-px bg-white/40 mt-3.5 shrink-0" />
-            <p className="text-base sm:text-lg text-white/80 leading-relaxed font-light max-w-2xl">
+            <p className="text-base sm:text-lg text-white/90 leading-relaxed font-normal max-w-2xl">
               {t.join.subtitle}
             </p>
           </div>
         </div>
 
-        {/* 2. Daftar Peran (Editorial Hairline Rows, Tanpa Card) */}
-        <div className="space-y-6 pt-4 border-t border-white/15">
+        {/* 2. Daftar Peran — Tulisan Jelas, Font Biasa, Tanpa Card */}
+        <div className="space-y-6 pt-4 border-t border-white/20">
           <div className="flex items-center justify-between pb-2">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-white/50 block">
+            <span className="text-xs sm:text-sm font-bold tracking-widest uppercase text-white/80 block">
               {t.join.rolesTag}
             </span>
-            <span className="text-[11px] font-mono text-white/40">
+            <span className="text-xs font-semibold text-white/60">
               01 — {String(t.join.roleDescriptions.length).padStart(2, '0')}
             </span>
           </div>
 
-          <div className="divide-y divide-white/15 border-b border-white/15">
+          <div className="divide-y divide-white/20 border-b border-white/20">
             {t.join.roleDescriptions.map((role, idx) => {
               const num = String(idx + 1).padStart(2, '0');
               const matchedRole = t.join.roles[idx]?.value || '';
@@ -103,8 +91,8 @@ export default function BergabungPage() {
                   key={idx}
                   className="py-8 md:py-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline transition-colors hover:bg-white/[0.02]"
                 >
-                  {/* Nomor Urut */}
-                  <div className="md:col-span-2 font-mono text-2xl md:text-3xl text-white/30 font-light">
+                  {/* Nomor Urut (Font Biasa) */}
+                  <div className="md:col-span-2 text-2xl sm:text-3xl text-white/60 font-bold">
                     {num}
                   </div>
 
@@ -115,9 +103,9 @@ export default function BergabungPage() {
                     </h3>
                   </div>
 
-                  {/* Deskripsi & Quick Action */}
+                  {/* Deskripsi & Tombol Pilih */}
                   <div className="md:col-span-6 space-y-4">
-                    <p className="text-sm sm:text-base text-white/70 leading-relaxed font-light">
+                    <p className="text-sm sm:text-base text-white/90 leading-relaxed font-normal">
                       {role.desc}
                     </p>
 
@@ -125,7 +113,7 @@ export default function BergabungPage() {
                       <button
                         type="button"
                         onClick={() => selectRoleAndScroll(matchedRole)}
-                        className="text-xs uppercase font-mono tracking-widest text-white/70 hover:text-white flex items-center gap-2 border-b border-white/30 hover:border-white pb-0.5 transition-all cursor-pointer group"
+                        className="text-xs uppercase font-bold tracking-wider text-white hover:text-white/80 flex items-center gap-2 border-b border-white/40 hover:border-white pb-0.5 transition-all cursor-pointer group"
                       >
                         <span>{t.join.selectRoleBtn}</span>
                         <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -138,10 +126,10 @@ export default function BergabungPage() {
           </div>
         </div>
 
-        {/* 3. Formulir Pendaftaran (Minimalis Garis Bawah, Tanpa Card, Tanpa Pillbar) */}
-        <div id="form-pendaftaran" className="pt-4 border-t border-white/15 space-y-10 max-w-3xl scroll-mt-28">
+        {/* 3. Formulir Pendaftaran — Garis Bawah Jelas, Tanpa Card, Tanpa Pillbar */}
+        <div id="form-pendaftaran" className="pt-4 border-t border-white/20 space-y-10 max-w-3xl scroll-mt-28">
           <div className="space-y-2">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-white/50 block">
+            <span className="text-xs sm:text-sm font-bold tracking-widest uppercase text-white/80 block">
               {t.join.formTitle}
             </span>
             <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
@@ -151,20 +139,20 @@ export default function BergabungPage() {
 
           {submitted ? (
             <div className="py-8 space-y-6">
-              <div className="w-12 h-12 flex items-center justify-center border border-white/30 text-white">
-                <Check className="w-6 h-6" />
+              <div className="w-12 h-12 flex items-center justify-center border border-white/40 text-white">
+                <Check className="w-6 h-6 stroke-[2.5]" />
               </div>
               <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
                 {t.join.successTitle}
               </h3>
-              <p className="text-base sm:text-lg text-white/80 font-light leading-relaxed max-w-xl">
+              <p className="text-base sm:text-lg text-white/90 font-normal leading-relaxed max-w-xl">
                 {t.join.successDesc}
               </p>
               <div className="pt-4">
                 <button
                   type="button"
                   onClick={() => setSubmitted(false)}
-                  className="text-xs uppercase font-mono tracking-widest text-white hover:text-white/80 border-b border-white pb-1 transition-colors cursor-pointer"
+                  className="text-xs uppercase font-bold tracking-wider text-white hover:text-white/80 border-b border-white pb-1 transition-colors cursor-pointer"
                 >
                   {t.join.resetBtn} →
                 </button>
@@ -176,7 +164,7 @@ export default function BergabungPage() {
               {/* Nama Lengkap & Email */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div className="group space-y-2">
-                  <label className="text-[11px] font-mono uppercase tracking-widest text-white/60 group-focus-within:text-white transition-colors block">
+                  <label className="text-xs uppercase font-bold tracking-wider text-white/80 group-focus-within:text-white transition-colors block">
                     {t.join.fieldName} *
                   </label>
                   <input
@@ -185,12 +173,12 @@ export default function BergabungPage() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder={t.join.fieldNamePlaceholder}
-                    className="w-full bg-transparent border-0 border-b border-white/25 focus:border-white focus:ring-0 rounded-none px-0 py-3 text-base sm:text-lg text-white placeholder:text-white/25 outline-none transition-colors"
+                    className="w-full bg-transparent border-0 border-b border-white/30 focus:border-white focus:ring-0 rounded-none px-0 py-3 text-base sm:text-lg text-white placeholder:text-white/40 outline-none transition-colors"
                   />
                 </div>
 
                 <div className="group space-y-2">
-                  <label className="text-[11px] font-mono uppercase tracking-widest text-white/60 group-focus-within:text-white transition-colors block">
+                  <label className="text-xs uppercase font-bold tracking-wider text-white/80 group-focus-within:text-white transition-colors block">
                     {t.join.fieldEmail} *
                   </label>
                   <input
@@ -199,14 +187,14 @@ export default function BergabungPage() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder={t.join.fieldEmailPlaceholder}
-                    className="w-full bg-transparent border-0 border-b border-white/25 focus:border-white focus:ring-0 rounded-none px-0 py-3 text-base sm:text-lg text-white placeholder:text-white/25 outline-none transition-colors"
+                    className="w-full bg-transparent border-0 border-b border-white/30 focus:border-white focus:ring-0 rounded-none px-0 py-3 text-base sm:text-lg text-white placeholder:text-white/40 outline-none transition-colors"
                   />
                 </div>
               </div>
 
               {/* Kota / Domisili */}
               <div className="group space-y-2">
-                <label className="text-[11px] font-mono uppercase tracking-widest text-white/60 group-focus-within:text-white transition-colors block">
+                <label className="text-xs uppercase font-bold tracking-wider text-white/80 group-focus-within:text-white transition-colors block">
                   {t.join.fieldCity} *
                 </label>
                 <input
@@ -215,18 +203,18 @@ export default function BergabungPage() {
                   value={formData.city}
                   onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                   placeholder={t.join.fieldCityPlaceholder}
-                  className="w-full bg-transparent border-0 border-b border-white/25 focus:border-white focus:ring-0 rounded-none px-0 py-3 text-base sm:text-lg text-white placeholder:text-white/25 outline-none transition-colors"
+                  className="w-full bg-transparent border-0 border-b border-white/30 focus:border-white focus:ring-0 rounded-none px-0 py-3 text-base sm:text-lg text-white placeholder:text-white/40 outline-none transition-colors"
                 />
               </div>
 
-              {/* Pemilihan Peran — Minimalist Sharp Tiles (Bukan Select Dropdown Bawaan OS, Bukan Pillbar) */}
+              {/* Pemilihan Peran — Tile Tajam Minimalis, Font Biasa, Sangat Jelas */}
               <div id="role-selector" className="space-y-4 pt-2">
                 <div className="flex items-center justify-between">
-                  <label className="text-[11px] font-mono uppercase tracking-widest text-white/60 block">
+                  <label className="text-xs uppercase font-bold tracking-wider text-white/80 block">
                     {t.join.fieldRole} *
                   </label>
                   {!formData.role && (
-                    <span className="text-[11px] font-mono text-white/40">
+                    <span className="text-xs text-white/60">
                       (Wajib dipilih)
                     </span>
                   )}
@@ -240,10 +228,10 @@ export default function BergabungPage() {
                         key={r.value}
                         type="button"
                         onClick={() => setFormData({ ...formData, role: r.value })}
-                        className={`text-left px-4 py-3.5 text-xs font-mono tracking-wider uppercase transition-all duration-150 cursor-pointer rounded-none border flex items-center justify-between gap-2 ${
+                        className={`text-left px-4 py-3.5 text-xs font-semibold tracking-wider uppercase transition-all duration-150 cursor-pointer rounded-none border flex items-center justify-between gap-2 ${
                           isSelected
                             ? 'bg-white text-[#16276B] font-bold border-white'
-                            : 'bg-transparent text-white/75 border-white/20 hover:border-white/60 hover:text-white'
+                            : 'bg-transparent text-white border-white/30 hover:border-white hover:bg-white/5'
                         }`}
                       >
                         <span className="truncate">{r.label}</span>
@@ -256,7 +244,7 @@ export default function BergabungPage() {
 
               {/* Motivasi Singkat */}
               <div className="group space-y-2 pt-2">
-                <label className="text-[11px] font-mono uppercase tracking-widest text-white/60 group-focus-within:text-white transition-colors block">
+                <label className="text-xs uppercase font-bold tracking-wider text-white/80 group-focus-within:text-white transition-colors block">
                   {t.join.fieldMotivation} *
                 </label>
                 <textarea
@@ -265,11 +253,11 @@ export default function BergabungPage() {
                   value={formData.motivation}
                   onChange={(e) => setFormData({ ...formData, motivation: e.target.value })}
                   placeholder={t.join.fieldMotivationPlaceholder}
-                  className="w-full bg-transparent border-0 border-b border-white/25 focus:border-white focus:ring-0 rounded-none px-0 py-3 text-base sm:text-lg text-white placeholder:text-white/25 outline-none transition-colors resize-none leading-relaxed"
+                  className="w-full bg-transparent border-0 border-b border-white/30 focus:border-white focus:ring-0 rounded-none px-0 py-3 text-base sm:text-lg text-white placeholder:text-white/40 outline-none transition-colors resize-none leading-relaxed"
                 />
               </div>
 
-              {/* Submit Button (Sharp Editorial Geometry, NO PILLBAR) */}
+              {/* Submit Button (Sharp Minimalist Editorial) */}
               <div className="pt-4">
                 <button
                   type="submit"
@@ -288,11 +276,11 @@ export default function BergabungPage() {
       </div>
 
       {/* Footer — Strictly Single Line */}
-      <footer className="border-t border-white/15 py-4 w-full">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-row items-center justify-between text-[11px] sm:text-xs text-white/70 whitespace-nowrap gap-2">
+      <footer className="border-t border-white/20 py-4 w-full">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-row items-center justify-between text-[11px] sm:text-xs text-white/80 whitespace-nowrap gap-2">
           <span>{t.footnote.copyright}</span>
           
-          <div className="flex items-center gap-3 sm:gap-5 text-white/80">
+          <div className="flex items-center gap-3 sm:gap-5 text-white/90">
             <a
               href="https://instagram.com/climatecardinals.id"
               target="_blank"
