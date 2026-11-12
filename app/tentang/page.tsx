@@ -91,7 +91,7 @@ export default function TentangPage() {
 
           <div className="pt-4 flex flex-wrap gap-4 items-center">
             <a
-              href="mailto:indonesia@climatecardinals.org"
+              href="mailto:climatecardinals.id@icloud.com"
               className="bg-white text-[#16276B] hover:bg-white/90 text-xs font-bold uppercase tracking-widest px-8 py-4 transition-all inline-flex items-center gap-3 cursor-pointer rounded-none group"
             >
               <Mail className="w-4 h-4" />
@@ -113,11 +113,19 @@ export default function TentangPage() {
       </div>
 
       {/* Strictly Single-Line Footnote */}
-      <footer className="border-t border-white/20 py-4 w-full">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-row items-center justify-between text-[11px] sm:text-xs text-white/80 whitespace-nowrap gap-2">
+      <footer className="border-t border-white/20 py-5 w-full mt-auto">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between text-xs text-white/80 gap-3">
           <span>{t.footnote.copyright}</span>
           
-          <div className="flex items-center gap-3 sm:gap-5 text-white/90">
+          <div className="flex items-center gap-6 text-white/90">
+            <a
+              href="mailto:climatecardinals.id@icloud.com"
+              className="hover:text-white flex items-center gap-1.5 transition-colors"
+            >
+              <Mail className="w-3.5 h-3.5" />
+              <span>climatecardinals.id@icloud.com</span>
+            </a>
+
             <a
               href="https://instagram.com/climatecardinals.id"
               target="_blank"

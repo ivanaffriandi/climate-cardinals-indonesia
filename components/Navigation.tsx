@@ -105,7 +105,7 @@ export default function Navigation() {
     { label: t.nav.home, href: '/' },
     { label: t.nav.about, href: '/tentang' },
     { label: t.nav.join, href: '/bergabung' },
-    { label: t.nav.contact, href: '/#kontak' },
+    { label: t.nav.contact, href: 'mailto:climatecardinals.id@icloud.com' },
   ];
 
   return (

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ArrowRight, Check } from 'lucide-react';
+import { ArrowRight, Check, Mail, Instagram } from 'lucide-react';
 import { useLanguage } from '@/lib/LanguageContext';
 
 export default function BergabungPage() {
@@ -276,17 +276,26 @@ export default function BergabungPage() {
       </div>
 
       {/* Footer — Strictly Single Line */}
-      <footer className="border-t border-white/20 py-4 w-full">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-row items-center justify-between text-[11px] sm:text-xs text-white/80 whitespace-nowrap gap-2">
+      <footer className="border-t border-white/20 py-5 w-full mt-auto">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between text-xs text-white/80 gap-3">
           <span>{t.footnote.copyright}</span>
           
-          <div className="flex items-center gap-3 sm:gap-5 text-white/90">
+          <div className="flex items-center gap-6 text-white/90">
+            <a
+              href="mailto:climatecardinals.id@icloud.com"
+              className="hover:text-white flex items-center gap-1.5 transition-colors"
+            >
+              <Mail className="w-3.5 h-3.5" />
+              <span>climatecardinals.id@icloud.com</span>
+            </a>
+
             <a
               href="https://instagram.com/climatecardinals.id"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white flex items-center gap-1.5 transition-colors"
             >
+              <Instagram className="w-3.5 h-3.5" />
               <span>@climatecardinals.id</span>
             </a>
           </div>
