@@ -9,9 +9,9 @@ export default function TentangPage() {
 
   return (
     <div className="text-white min-h-[calc(100vh-80px)] flex flex-col justify-between bg-transparent">
-      
+
       <div className="max-w-5xl mx-auto px-6 lg:px-12 py-12 md:py-20 w-full space-y-20">
-        
+
         {/* Header Title — Bersih, Tanpa Link di Atas */}
         <div className="space-y-4 max-w-3xl">
           <span className="text-xs sm:text-sm font-bold tracking-widest uppercase text-white/80 block">
@@ -42,7 +42,7 @@ export default function TentangPage() {
           </span>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
-            
+
             {/* 01 */}
             <div className="space-y-3">
               <span className="text-2xl sm:text-3xl font-bold text-white/60 block">01</span>
@@ -84,7 +84,7 @@ export default function TentangPage() {
           <span className="text-xs uppercase font-bold tracking-widest text-white/80 block">
             {t.about.visionTag}
           </span>
-          
+
           <p className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-snug tracking-tight max-w-4xl">
             {t.about.visionQuote}
           </p>
@@ -116,7 +116,7 @@ export default function TentangPage() {
       <footer className="border-t border-white/20 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] w-full shrink-0">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-row items-center justify-between text-[11px] sm:text-xs text-white/80 whitespace-nowrap gap-4">
           <span className="truncate">{t.footnote.copyright}</span>
-          
+
           <a
             href="https://instagram.com/climatecardinals.id"
             target="_blank"
