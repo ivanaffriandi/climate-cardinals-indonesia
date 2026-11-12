@@ -51,12 +51,43 @@ export default function Navigation() {
     ['rgba(217, 26, 42, 0.98)', 'rgba(217, 26, 42, 0.98)', 'rgba(22, 39, 107, 0.98)']
   );
 
-  // Sync body background color in real time
+  // Status Bar Dynamic Color Adapter:
+  // - Menyesuaikan warna <meta name="theme-color">, <html>, dan <body> secara otomatis saat discroll
+  // - Otomatis berganti ke Deep Navy Blue (#16276B) saat menu dibuka
+  // - Mengembalikan warna status bar secara presisi saat menu ditutup
   useEffect(() => {
-    return pageBgColor.on('change', (latest) => {
-      document.body.style.backgroundColor = latest;
+    const updateTheme = (color: string) => {
+      // 1. Update <meta name="theme-color"> untuk Safari iOS & Chrome Android
+      let metaTheme = document.querySelector('meta[name="theme-color"]');
+      if (!metaTheme) {
+        metaTheme = document.createElement('meta');
+        metaTheme.setAttribute('name', 'theme-color');
+        document.head.appendChild(metaTheme);
+      }
+      metaTheme.setAttribute('content', color);
+
+      // 2. Sinkronkan background <html> & <body>
+      document.documentElement.style.backgroundColor = color;
+      document.body.style.backgroundColor = color;
+    };
+
+    if (menuOpen) {
+      updateTheme('#16276B');
+      return;
+    }
+
+    // Set warna awal
+    updateTheme(pageBgColor.get());
+
+    // Berlangganan perubahan scroll secara real-time
+    const unsubscribe = pageBgColor.on('change', (latestColor) => {
+      if (!menuOpen) {
+        updateTheme(latestColor);
+      }
     });
-  }, [pageBgColor]);
+
+    return () => unsubscribe();
+  }, [menuOpen, pageBgColor]);
 
   const menuItems = [
     { label: t.nav.home, href: '/' },
@@ -73,14 +104,14 @@ export default function Navigation() {
         aria-hidden="true"
       />
 
-      {/* Top Navbar — Mengikuti Transisi Warna Latar & Posisi Identik dengan Menu Overlay */}
+      {/* Top Navbar — Mengikuti Transisi Warna Latar, Mengisi Safe Area Status Bar */}
       <motion.header
         style={{ backgroundColor: navBgColor }}
-        className="w-full text-white sticky top-0 z-40 backdrop-blur-md"
+        className="w-full text-white sticky top-0 z-40 backdrop-blur-md pt-[env(safe-area-inset-top,0px)]"
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
           
-          {/* Brand with Logo */}
+          {/* Brand with Logo: Tipografi CLIMATE CARDINALS (Uppercase, Heavy Bold, 1 Baris) */}
           <Link href="/" className="flex items-center gap-3 group">
             <div className="relative w-8 h-8 sm:w-9 sm:h-9 shrink-0 transition-transform duration-200 group-hover:scale-105">
               <Image
@@ -91,11 +122,11 @@ export default function Navigation() {
                 priority
               />
             </div>
-            <div className="flex flex-col">
-              <span className="font-extrabold text-base sm:text-lg tracking-tight text-white font-sans leading-none">
-                Climate Cardinals
+            <div className="flex flex-col justify-center">
+              <span className="font-black text-sm sm:text-base tracking-tight uppercase text-white font-sans leading-none whitespace-nowrap">
+                CLIMATE CARDINALS
               </span>
-              <span className="text-[10px] text-white/80 tracking-widest uppercase font-semibold mt-0.5">
+              <span className="text-[9px] sm:text-[10px] text-white/85 tracking-[0.28em] uppercase font-bold mt-1 leading-none">
                 INDONESIA
               </span>
             </div>
@@ -141,7 +172,7 @@ export default function Navigation() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
-            className="fixed inset-0 z-50 bg-[#16276B] text-white flex flex-col justify-between overflow-y-auto no-scrollbar"
+            className="fixed inset-0 z-50 bg-[#16276B] text-white flex flex-col justify-between overflow-y-auto no-scrollbar pt-[env(safe-area-inset-top,0px)] pb-[env(safe-area-inset-bottom,0px)]"
           >
             {/* Top Bar inside Menu: POSISI, PADDING, DAN UKURAN 100% PERSIS DENGAN NAVBAR UTAMA */}
             <div className="w-full h-20 shrink-0">
@@ -162,11 +193,11 @@ export default function Navigation() {
                       priority
                     />
                   </div>
-                  <div className="flex flex-col">
-                    <span className="font-extrabold text-base sm:text-lg tracking-tight text-white font-sans leading-none">
-                      Climate Cardinals
+                  <div className="flex flex-col justify-center">
+                    <span className="font-black text-sm sm:text-base tracking-tight uppercase text-white font-sans leading-none whitespace-nowrap">
+                      CLIMATE CARDINALS
                     </span>
-                    <span className="text-[10px] text-white/80 tracking-widest uppercase font-semibold mt-0.5">
+                    <span className="text-[9px] sm:text-[10px] text-white/85 tracking-[0.28em] uppercase font-bold mt-1 leading-none">
                       INDONESIA
                     </span>
                   </div>
