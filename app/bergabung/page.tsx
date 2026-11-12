@@ -14,7 +14,7 @@ export default function BergabungPage() {
     name: '',
     email: '',
     city: '',
-    role: '',
+    role: 'research', // Default ke peran yang masih open (researcher & translator)
     motivation: '',
   });
   const [submitting, setSubmitting] = useState(false);
@@ -66,7 +66,7 @@ export default function BergabungPage() {
         name: '',
         email: '',
         city: '',
-        role: '',
+        role: 'research',
         motivation: '',
       });
     }, 600);
@@ -109,7 +109,7 @@ export default function BergabungPage() {
           </div>
         </div>
 
-        {/* 2. Daftar Peran — Model Dropdown / Accordion Interaktif (Tanpa Tombol Pilih Tiap Role) */}
+        {/* 2. Daftar Peran (Roles) — Model Dropdown / Accordion Interaktif */}
         <div className="space-y-4 pt-6 border-t border-white/20">
           <div className="flex items-center justify-between pb-3">
             <span className="text-xs sm:text-sm font-bold tracking-widest uppercase text-white/80 block">
@@ -124,23 +124,34 @@ export default function BergabungPage() {
             {t.join.roleDescriptions.map((role, idx) => {
               const num = String(idx + 1).padStart(2, '0');
               const isOpen = openRoleIndex === idx;
+              const isAvailable = role.available;
 
               return (
                 <div key={idx} className="transition-colors hover:bg-white/[0.02]">
-                  {/* Baris Judul Peran yang Bisa Diklik (Dropdown Toggle) */}
+                  {/* Baris Judul Peran (Dropdown Toggle) */}
                   <button
                     type="button"
                     onClick={() => toggleRole(idx)}
                     className="w-full py-6 md:py-8 flex items-center justify-between text-left cursor-pointer group"
                     aria-expanded={isOpen}
                   >
-                    <div className="flex items-center gap-4 sm:gap-8">
+                    <div className="flex items-center gap-3 sm:gap-6 flex-wrap sm:flex-nowrap">
                       <span className="text-xl sm:text-2xl font-bold text-white/50 group-hover:text-white/80 transition-colors">
                         {num}
                       </span>
                       <h3 className="text-lg sm:text-2xl font-bold text-white tracking-tight group-hover:text-white transition-colors">
                         {role.title}
                       </h3>
+                      {/* Status Ketersediaan */}
+                      {isAvailable ? (
+                        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 border border-emerald-400/50 text-emerald-300 bg-emerald-950/40">
+                          ● {t.join.openStatus}
+                        </span>
+                      ) : (
+                        <span className="text-[10px] font-medium uppercase tracking-wider px-2 py-0.5 border border-white/10 text-white/40">
+                          ○ {t.join.closedStatus}
+                        </span>
+                      )}
                     </div>
 
                     <div className="p-2 border border-white/20 group-hover:border-white transition-colors shrink-0 rounded-none ml-4">
@@ -162,10 +173,20 @@ export default function BergabungPage() {
                         transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
                         className="overflow-hidden"
                       >
-                        <div className="pb-8 pt-1 pl-10 sm:pl-16 pr-4 max-w-2xl">
+                        <div className="pb-8 pt-1 pl-10 sm:pl-14 pr-4 max-w-2xl space-y-4">
                           <p className="text-sm sm:text-base text-white/90 leading-relaxed font-normal">
                             {role.desc}
                           </p>
+                          {isAvailable && (
+                            <button
+                              type="button"
+                              onClick={openModal}
+                              className="text-xs uppercase font-bold tracking-wider text-emerald-300 hover:text-white flex items-center gap-1.5 border-b border-emerald-400/40 hover:border-white pb-0.5 transition-all cursor-pointer group"
+                            >
+                              <span>{t.join.applyBtn} ({role.title})</span>
+                              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                            </button>
+                          )}
                         </div>
                       </motion.div>
                     )}
@@ -178,7 +199,7 @@ export default function BergabungPage() {
 
       </div>
 
-      {/* 3. POP-UP MODAL FORMULIR (Aesthetic, Bersih, Dropdown Pilihan Peran Kompak) */}
+      {/* 3. POP-UP MODAL FORMULIR (Aesthetic, Bersih, Tanpa Garis Putih di Atas) */}
       <AnimatePresence>
         {isModalOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
@@ -194,18 +215,18 @@ export default function BergabungPage() {
               aria-hidden="true"
             />
 
-            {/* Modal Dialog Content */}
+            {/* Modal Dialog Content (Flush, Tanpa Garis Putih Tebal) */}
             <motion.div
               initial={{ opacity: 0, scale: 0.98, y: 15 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.98, y: 15 }}
               transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-xl bg-[#0f1738] border border-white/20 border-t-2 border-t-white text-white p-6 sm:p-10 z-10 my-auto shadow-2xl rounded-none max-h-[92vh] overflow-y-auto"
+              className="relative w-full max-w-lg bg-[#0e1638] border border-white/15 text-white p-6 sm:p-8 z-10 my-auto shadow-[0_25px_60px_-15px_rgba(0,0,0,0.85)] rounded-none max-h-[90vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
               
               {/* Header Modal */}
-              <div className="flex items-start justify-between gap-4 pb-6 border-b border-white/20">
+              <div className="flex items-start justify-between gap-4 pb-5 border-b border-white/15">
                 <div className="space-y-1">
                   <span className="text-[11px] font-bold tracking-widest uppercase text-white/60 block">
                     {t.join.tag}
@@ -219,15 +240,15 @@ export default function BergabungPage() {
                   type="button"
                   onClick={closeModal}
                   aria-label={t.join.closeBtn}
-                  className="border border-white/30 hover:border-white text-white/80 hover:text-white p-2 text-xs uppercase font-bold tracking-wider transition-colors cursor-pointer rounded-none flex items-center gap-1.5"
+                  className="text-white/60 hover:text-white p-1 transition-colors cursor-pointer rounded-none"
                 >
-                  <X className="w-4 h-4" />
+                  <X className="w-5 h-5" />
                 </button>
               </div>
 
               {/* Status Berhasil atau Formulir */}
               {submitted ? (
-                <div className="py-10 space-y-6">
+                <div className="py-8 space-y-6">
                   <div className="w-12 h-12 flex items-center justify-center border border-white/40 text-white">
                     <Check className="w-6 h-6 stroke-[2.5]" />
                   </div>
@@ -303,7 +324,7 @@ export default function BergabungPage() {
                     </div>
                   </div>
 
-                  {/* Pemilihan Peran — Dropdown Kompak Minimalis (Bukan 7 Kotak Menumpuk) */}
+                  {/* Pemilihan Peran — Dropdown Kompak dengan Status Open/Closed */}
                   <div className="relative group space-y-2">
                     <label className="text-xs uppercase font-bold tracking-wider text-white/80 block">
                       {t.join.fieldRole} *
@@ -313,8 +334,11 @@ export default function BergabungPage() {
                       onClick={() => setIsRoleDropdownOpen(!isRoleDropdownOpen)}
                       className="w-full bg-transparent border-0 border-b border-white/30 hover:border-white focus:border-white rounded-none px-0 py-2.5 text-base text-left flex items-center justify-between text-white transition-colors cursor-pointer"
                     >
-                      <span className={formData.role ? 'text-white font-medium' : 'text-white/40'}>
+                      <span className="text-white font-medium flex items-center gap-2">
                         {selectedRoleLabel}
+                        <span className="text-[9px] font-bold uppercase tracking-wider text-emerald-300 border border-emerald-400/40 px-1.5 py-0.5">
+                          {t.join.openStatus}
+                        </span>
                       </span>
                       <ChevronDown
                         className={`w-4 h-4 text-white/60 transition-transform duration-200 ${
@@ -325,25 +349,44 @@ export default function BergabungPage() {
 
                     {/* Menu Pilihan Peran Melayang */}
                     {isRoleDropdownOpen && (
-                      <div className="absolute top-full left-0 right-0 mt-2 bg-[#0c1333] border border-white/20 shadow-2xl z-30 divide-y divide-white/10 max-h-56 overflow-y-auto rounded-none">
-                        {t.join.roles.map((r) => (
-                          <button
-                            key={r.value}
-                            type="button"
-                            onClick={() => {
-                              setFormData({ ...formData, role: r.value });
-                              setIsRoleDropdownOpen(false);
-                            }}
-                            className={`w-full text-left px-4 py-3 text-xs uppercase tracking-wider font-semibold transition-colors flex items-center justify-between cursor-pointer ${
-                              formData.role === r.value
-                                ? 'bg-white text-[#16276B]'
-                                : 'text-white/80 hover:bg-white/10 hover:text-white'
-                            }`}
-                          >
-                            <span>{r.label}</span>
-                            {formData.role === r.value && <Check className="w-4 h-4" />}
-                          </button>
-                        ))}
+                      <div className="absolute top-full left-0 right-0 mt-2 bg-[#080d24] border border-white/20 shadow-2xl z-30 divide-y divide-white/10 max-h-56 overflow-y-auto rounded-none">
+                        {t.join.roles.map((r) => {
+                          const isAvailable = r.available;
+                          return (
+                            <button
+                              key={r.value}
+                              type="button"
+                              disabled={!isAvailable}
+                              onClick={() => {
+                                if (isAvailable) {
+                                  setFormData({ ...formData, role: r.value });
+                                  setIsRoleDropdownOpen(false);
+                                }
+                              }}
+                              className={`w-full text-left px-4 py-3 text-xs uppercase tracking-wider font-semibold transition-colors flex items-center justify-between ${
+                                isAvailable
+                                  ? formData.role === r.value
+                                    ? 'bg-white text-[#16276B] cursor-pointer'
+                                    : 'text-white hover:bg-white/10 cursor-pointer'
+                                  : 'text-white/30 cursor-not-allowed bg-black/30'
+                              }`}
+                            >
+                              <div className="flex items-center gap-2">
+                                <span>{r.label}</span>
+                                {isAvailable ? (
+                                  <span className="text-[9px] font-bold text-emerald-300 border border-emerald-400/40 px-1.5 py-0.5">
+                                    {t.join.openStatus}
+                                  </span>
+                                ) : (
+                                  <span className="text-[9px] text-white/35">
+                                    ({t.join.closedStatus})
+                                  </span>
+                                )}
+                              </div>
+                              {formData.role === r.value && <Check className="w-4 h-4" />}
+                            </button>
+                          );
+                        })}
                       </div>
                     )}
                   </div>

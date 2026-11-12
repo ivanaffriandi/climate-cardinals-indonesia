@@ -84,8 +84,10 @@ export interface Translations {
     applyBtn: string;
     closeBtn: string;
     resetBtn: string;
-    roles: { value: string; label: string }[];
-    roleDescriptions: { title: string; desc: string }[];
+    openStatus: string;
+    closedStatus: string;
+    roles: { value: string; label: string; available?: boolean }[];
+    roleDescriptions: { title: string; desc: string; available?: boolean }[];
   };
   devBanner: string;
 }
@@ -151,7 +153,7 @@ const translations: Record<Language, Translations> = {
       tag: 'Open Recruitment',
       title: 'Bergabung Bersama Kami',
       subtitle: 'Jadilah bagian dari gerakan pemuda iklim terbesar di Indonesia. Kami mencari individu yang bersemangat untuk membuat perbedaan nyata.',
-      rolesTag: 'Peran yang Tersedia',
+      rolesTag: 'Roles',
       formTitle: 'Daftarkan Dirimu',
       fieldName: 'Nama Lengkap',
       fieldNamePlaceholder: 'Masukkan nama lengkapmu',
@@ -171,39 +173,47 @@ const translations: Record<Language, Translations> = {
       applyBtn: 'Daftar Sekarang',
       closeBtn: 'Tutup',
       resetBtn: 'Kirim Pendaftaran Lain',
+      openStatus: 'Tersedia',
+      closedStatus: 'Penuh',
       roles: [
-        { value: 'content', label: 'Content Writer' },
-        { value: 'social-media', label: 'Social Media' },
-        { value: 'design', label: 'Desainer Grafis' },
-        { value: 'research', label: 'Peneliti & Penerjemah' },
-        { value: 'event', label: 'Koordinator Event' },
-        { value: 'outreach', label: 'Outreach & Komunitas' },
-        { value: 'other', label: 'Lainnya' },
+        { value: 'research', label: 'Peneliti & Penerjemah', available: true },
+        { value: 'content', label: 'Content Writer', available: false },
+        { value: 'social-media', label: 'Social Media', available: false },
+        { value: 'design', label: 'Desainer Grafis', available: false },
+        { value: 'event', label: 'Koordinator Event', available: false },
+        { value: 'outreach', label: 'Outreach & Komunitas', available: false },
+        { value: 'other', label: 'Lainnya', available: false },
       ],
       roleDescriptions: [
         {
+          title: 'Peneliti & Penerjemah',
+          desc: 'Menerjemahkan dan menyederhanakan riset iklim global ke Bahasa Indonesia dan bahasa daerah.',
+          available: true,
+        },
+        {
           title: 'Content Writer',
           desc: 'Menulis artikel, rangkuman riset iklim, dan materi edukasi yang mudah dipahami publik luas.',
+          available: false,
         },
         {
           title: 'Social Media',
           desc: 'Mengelola konten dan strategi media sosial untuk memperluas jangkauan gerakan iklim di Indonesia.',
+          available: false,
         },
         {
           title: 'Desainer Grafis',
           desc: 'Menciptakan visual yang kuat dan konsisten untuk kampanye edukasi dan materi publikasi kami.',
-        },
-        {
-          title: 'Peneliti & Penerjemah',
-          desc: 'Menerjemahkan dan menyederhanakan riset iklim global ke Bahasa Indonesia dan bahasa daerah.',
+          available: false,
         },
         {
           title: 'Koordinator Event',
           desc: 'Merencanakan dan mengelola lokakarya, diskusi, dan aksi lapangan bersama komunitas.',
+          available: false,
         },
         {
           title: 'Outreach & Komunitas',
           desc: 'Membangun relasi dengan sekolah, kampus, dan komunitas lokal di seluruh penjuru nusantara.',
+          available: false,
         },
       ],
     },
@@ -269,7 +279,7 @@ const translations: Record<Language, Translations> = {
       tag: 'Open Recruitment',
       title: 'Join Our Movement',
       subtitle: 'Become part of Indonesia\'s leading youth climate movement. We\'re looking for passionate individuals ready to make a real difference.',
-      rolesTag: 'Available Roles',
+      rolesTag: 'Roles',
       formTitle: 'Apply Now',
       fieldName: 'Full Name',
       fieldNamePlaceholder: 'Enter your full name',
@@ -289,39 +299,47 @@ const translations: Record<Language, Translations> = {
       applyBtn: 'Apply Now',
       closeBtn: 'Close',
       resetBtn: 'Submit Another Application',
+      openStatus: 'Open',
+      closedStatus: 'Closed',
       roles: [
-        { value: 'content', label: 'Content Writer' },
-        { value: 'social-media', label: 'Social Media' },
-        { value: 'design', label: 'Graphic Designer' },
-        { value: 'research', label: 'Researcher & Translator' },
-        { value: 'event', label: 'Event Coordinator' },
-        { value: 'outreach', label: 'Outreach & Community' },
-        { value: 'other', label: 'Other' },
+        { value: 'research', label: 'Researcher & Translator', available: true },
+        { value: 'content', label: 'Content Writer', available: false },
+        { value: 'social-media', label: 'Social Media', available: false },
+        { value: 'design', label: 'Graphic Designer', available: false },
+        { value: 'event', label: 'Event Coordinator', available: false },
+        { value: 'outreach', label: 'Outreach & Community', available: false },
+        { value: 'other', label: 'Other', available: false },
       ],
       roleDescriptions: [
         {
+          title: 'Researcher & Translator',
+          desc: 'Translate and simplify global climate research into Indonesian and regional languages.',
+          available: true,
+        },
+        {
           title: 'Content Writer',
           desc: 'Write articles, climate research summaries, and educational materials in accessible language for the public.',
+          available: false,
         },
         {
           title: 'Social Media',
           desc: 'Manage content and strategy across social media platforms to expand the reach of Indonesia\'s climate movement.',
+          available: false,
         },
         {
           title: 'Graphic Designer',
           desc: 'Create compelling, consistent visuals for education campaigns and our publication materials.',
-        },
-        {
-          title: 'Researcher & Translator',
-          desc: 'Translate and simplify global climate research into Indonesian and regional languages.',
+          available: false,
         },
         {
           title: 'Event Coordinator',
           desc: 'Plan and manage workshops, discussions, and field actions with community partners.',
+          available: false,
         },
         {
           title: 'Outreach & Community',
           desc: 'Build relationships with schools, universities, and local communities across the archipelago.',
+          available: false,
         },
       ],
     },
