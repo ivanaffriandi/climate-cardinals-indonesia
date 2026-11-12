@@ -26,10 +26,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="id" className="scroll-smooth">
-      <head>
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-      </head>
       <body className="min-h-screen text-white font-sans antialiased selection:bg-[#16276B] selection:text-white">
         <LanguageProvider>
           <Navigation />

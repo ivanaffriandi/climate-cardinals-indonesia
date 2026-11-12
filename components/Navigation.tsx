@@ -51,39 +51,43 @@ export default function Navigation() {
     ['rgba(217, 26, 42, 0.98)', 'rgba(217, 26, 42, 0.98)', 'rgba(22, 39, 107, 0.98)']
   );
 
-  // Status Bar Dynamic Color Adapter:
-  // - Menyesuaikan warna <meta name="theme-color">, <html>, dan <body> secara otomatis saat discroll
-  // - Otomatis berganti ke Deep Navy Blue (#16276B) saat menu dibuka
-  // - Mengembalikan warna status bar secara presisi saat menu ditutup
+  // Status Bar Adaptive Theme Color:
+  // - Instant, zero-lag, tidak ada throttling atau delay di iOS Safari
+  // - Di atas = Merah murni (#D91A2A)
+  // - Lewat hero / scroll ke bawah = Deep Navy Blue (#16276B)
+  // - Menu sidebar terbuka = Deep Navy Blue (#16276B)
+  // - Menu ditutup = langsung kembali otomatis ke warna posisi scroll saat itu
   useEffect(() => {
-    const updateTheme = (color: string) => {
+    const applyThemeColor = (color: string) => {
       let metaTheme = document.querySelector('meta[name="theme-color"]');
       if (!metaTheme) {
         metaTheme = document.createElement('meta');
         metaTheme.setAttribute('name', 'theme-color');
         document.head.appendChild(metaTheme);
       }
-      metaTheme.setAttribute('content', color);
-
+      if (metaTheme.getAttribute('content') !== color) {
+        metaTheme.setAttribute('content', color);
+      }
       document.documentElement.style.backgroundColor = color;
       document.body.style.backgroundColor = color;
     };
 
     if (menuOpen) {
-      updateTheme('#16276B');
+      applyThemeColor('#16276B');
       return;
     }
 
-    updateTheme(pageBgColor.get());
+    const updateScrollTheme = () => {
+      const y = window.scrollY || 0;
+      const targetColor = y > 250 ? '#16276B' : '#D91A2A';
+      applyThemeColor(targetColor);
+    };
 
-    const unsubscribe = pageBgColor.on('change', (latestColor) => {
-      if (!menuOpen) {
-        updateTheme(latestColor);
-      }
-    });
+    updateScrollTheme();
 
-    return () => unsubscribe();
-  }, [menuOpen, pageBgColor]);
+    window.addEventListener('scroll', updateScrollTheme, { passive: true });
+    return () => window.removeEventListener('scroll', updateScrollTheme);
+  }, [menuOpen]);
 
   const menuItems = [
     { label: t.nav.home, href: '/' },
@@ -107,7 +111,7 @@ export default function Navigation() {
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
           
-          {/* Brand with Logo: Tipografi CLIMATE CARDINALS (Uppercase, Heavy Bold, 1 Baris) */}
+          {/* Brand with Logo: Climate Cardinals (Title Case, 1 Baris) + INDONESIA di bawahnya */}
           <Link href="/" className="flex items-center gap-3 group">
             <div className="relative w-8 h-8 sm:w-9 sm:h-9 shrink-0 transition-transform duration-200 group-hover:scale-105">
               <Image
@@ -119,10 +123,10 @@ export default function Navigation() {
               />
             </div>
             <div className="flex flex-col justify-center">
-              <span className="font-black text-sm sm:text-base tracking-tight uppercase text-white font-sans leading-none whitespace-nowrap">
-                CLIMATE CARDINALS
+              <span className="font-extrabold text-base sm:text-lg tracking-tight text-white font-sans leading-none whitespace-nowrap">
+                Climate Cardinals
               </span>
-              <span className="text-[9px] sm:text-[10px] text-white/85 tracking-[0.28em] uppercase font-bold mt-1 leading-none">
+              <span className="text-[10px] text-white/80 tracking-widest uppercase font-semibold mt-1 leading-none">
                 INDONESIA
               </span>
             </div>
@@ -190,10 +194,10 @@ export default function Navigation() {
                     />
                   </div>
                   <div className="flex flex-col justify-center">
-                    <span className="font-black text-sm sm:text-base tracking-tight uppercase text-white font-sans leading-none whitespace-nowrap">
-                      CLIMATE CARDINALS
+                    <span className="font-extrabold text-base sm:text-lg tracking-tight text-white font-sans leading-none whitespace-nowrap">
+                      Climate Cardinals
                     </span>
-                    <span className="text-[9px] sm:text-[10px] text-white/85 tracking-[0.28em] uppercase font-bold mt-1 leading-none">
+                    <span className="text-[10px] text-white/80 tracking-widest uppercase font-semibold mt-1 leading-none">
                       INDONESIA
                     </span>
                   </div>
@@ -314,7 +318,7 @@ export default function Navigation() {
                 </a>
               </motion.div>
 
-              {/* Thin Divider Line (Expanding smoothly from center) */}
+              {/* Thin Divider Line */}
               <motion.div
                 initial={{ scaleX: 0, opacity: 0 }}
                 animate={{ scaleX: 1, opacity: 1 }}
