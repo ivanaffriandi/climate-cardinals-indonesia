@@ -275,30 +275,20 @@ export default function BergabungPage() {
 
       </div>
 
-      {/* Footer — Strictly Single Line */}
-      <footer className="border-t border-white/20 py-5 w-full mt-auto">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between text-xs text-white/80 gap-3">
-          <span>{t.footnote.copyright}</span>
+      {/* Strictly Single-Line Footnote (Satu Baris, Anti-Potong) */}
+      <footer className="border-t border-white/20 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] w-full shrink-0">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-row items-center justify-between text-[11px] sm:text-xs text-white/80 whitespace-nowrap gap-4">
+          <span className="truncate">{t.footnote.copyright}</span>
           
-          <div className="flex items-center gap-6 text-white/90">
-            <a
-              href="mailto:climatecardinals.id@icloud.com"
-              className="hover:text-white flex items-center gap-1.5 transition-colors"
-            >
-              <Mail className="w-3.5 h-3.5" />
-              <span>climatecardinals.id@icloud.com</span>
-            </a>
-
-            <a
-              href="https://instagram.com/climatecardinals.id"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white flex items-center gap-1.5 transition-colors"
-            >
-              <Instagram className="w-3.5 h-3.5" />
-              <span>@climatecardinals.id</span>
-            </a>
-          </div>
+          <a
+            href="https://instagram.com/climatecardinals.id"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-white flex items-center gap-1.5 transition-colors shrink-0"
+          >
+            <Instagram className="w-3.5 h-3.5" />
+            <span>@climatecardinals.id</span>
+          </a>
         </div>
       </footer>
     </div>

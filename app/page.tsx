@@ -24,7 +24,27 @@ export default function HomePage() {
           </h1>
         </div>
 
-        {/* Dua Narasi Utama & Tombol Aksi */}
+        {/* Action Buttons: About Us & Get in Touch (Di Atas Tulisan Konten) */}
+        <div className="pt-8 flex flex-wrap items-center gap-4">
+          <Link
+            href="/tentang"
+            className="bg-white text-[#16276B] hover:bg-white/90 text-xs font-bold uppercase tracking-widest px-8 py-4 transition-all inline-flex items-center gap-3 cursor-pointer rounded-none group"
+          >
+            <span>{t.hero.btnAbout}</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
+          </Link>
+
+          <a
+            href="mailto:climatecardinals.id@icloud.com"
+            className="border border-white/40 hover:border-white text-white hover:bg-white/5 text-xs font-bold uppercase tracking-widest px-8 py-4 transition-all inline-flex items-center gap-3 cursor-pointer rounded-none group"
+          >
+            <Mail className="w-4 h-4" />
+            <span>{t.hero.btnContact}</span>
+            <span className="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
+
+        {/* Dua Narasi Konten Utama (Berada di Bawah Tombol Aksi) */}
         <div className="mt-12 pt-10 border-t border-white/20">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14 max-w-6xl">
             
@@ -45,55 +65,24 @@ export default function HomePage() {
             </div>
 
           </div>
-
-          {/* Action Buttons: About Us & Get in Touch */}
-          <div className="pt-10 flex flex-wrap items-center gap-4">
-            <Link
-              href="/tentang"
-              className="bg-white text-[#16276B] hover:bg-white/90 text-xs font-bold uppercase tracking-widest px-8 py-4 transition-all inline-flex items-center gap-3 cursor-pointer rounded-none group"
-            >
-              <span>{t.hero.btnAbout}</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
-            </Link>
-
-            <a
-              href="mailto:climatecardinals.id@icloud.com"
-              className="border border-white/40 hover:border-white text-white hover:bg-white/5 text-xs font-bold uppercase tracking-widest px-8 py-4 transition-all inline-flex items-center gap-3 cursor-pointer rounded-none group"
-            >
-              <Mail className="w-4 h-4" />
-              <span>{t.hero.btnContact}</span>
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-          </div>
-
         </div>
 
       </section>
 
-      {/* 2. FOOTNOTE ULTRA SIMPLE */}
-      <footer className="border-t border-white/20 py-5 w-full mt-auto">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between text-xs text-white/80 gap-3">
-          <span>{t.footnote.copyright}</span>
+      {/* 2. FOOTNOTE STRICTLY SATU BARIS (Anti-Wrap, Anti-Potong) */}
+      <footer className="border-t border-white/20 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] w-full shrink-0">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-row items-center justify-between text-[11px] sm:text-xs text-white/80 whitespace-nowrap gap-4">
+          <span className="truncate">{t.footnote.copyright}</span>
           
-          <div className="flex items-center gap-6 text-white/90">
-            <a
-              href="mailto:climatecardinals.id@icloud.com"
-              className="hover:text-white flex items-center gap-1.5 transition-colors"
-            >
-              <Mail className="w-3.5 h-3.5" />
-              <span>climatecardinals.id@icloud.com</span>
-            </a>
-
-            <a
-              href="https://instagram.com/climatecardinals.id"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white flex items-center gap-1.5 transition-colors"
-            >
-              <Instagram className="w-3.5 h-3.5" />
-              <span>@climatecardinals.id</span>
-            </a>
-          </div>
+          <a
+            href="https://instagram.com/climatecardinals.id"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-white flex items-center gap-1.5 transition-colors shrink-0"
+          >
+            <Instagram className="w-3.5 h-3.5" />
+            <span>@climatecardinals.id</span>
+          </a>
         </div>
       </footer>
 

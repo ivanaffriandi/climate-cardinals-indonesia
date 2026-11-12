@@ -294,7 +294,7 @@ export default function Navigation() {
                   href="https://www.climatecardinals.org"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-xs sm:text-sm text-white/80 hover:text-white transition-all bg-white/10 hover:bg-white/20 border border-white/20 px-5 py-2.5 rounded-full group cursor-pointer shadow-sm"
+                  className="inline-flex items-center gap-2.5 text-xs font-bold uppercase tracking-widest text-white/90 hover:text-white transition-all bg-transparent hover:bg-white/5 border border-white/30 hover:border-white px-6 py-3.5 rounded-none group cursor-pointer"
                 >
                   <span>climatecardinals.org</span>
                   <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
