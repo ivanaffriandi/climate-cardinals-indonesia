@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Instagram, Mail, ArrowUpRight, Globe } from 'lucide-react';
+import { Instagram, Mail, ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '@/lib/LanguageContext';
 
 export default function TentangPage() {
@@ -11,7 +11,7 @@ export default function TentangPage() {
   return (
     <div className="text-white min-h-[calc(100vh-80px)] flex flex-col justify-between bg-transparent">
       
-      <div className="max-w-5xl mx-auto px-6 lg:px-12 py-12 md:py-20 w-full space-y-16">
+      <div className="max-w-5xl mx-auto px-6 lg:px-12 py-12 md:py-20 w-full space-y-20">
         
         {/* Header Title (Tanpa Tombol Back) */}
         <div className="space-y-4 max-w-3xl">
@@ -36,63 +36,76 @@ export default function TentangPage() {
         </div>
 
         {/* Story & Context */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 text-sm sm:text-base text-white/85 leading-relaxed pt-6 border-t border-white/15">
-          <div className="md:col-span-6 space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 text-sm sm:text-base text-white/85 leading-relaxed pt-8 border-t border-white/15">
+          <div className="md:col-span-6 space-y-5">
             <p>{t.about.p1}</p>
             <p>{t.about.p2}</p>
           </div>
 
-          <div className="md:col-span-6 space-y-4">
+          <div className="md:col-span-6 space-y-5">
             <p>{t.about.p3}</p>
             <p>{t.about.p4}</p>
           </div>
         </div>
 
-        {/* 3 Nilai Pokok Gerakan */}
-        <div className="space-y-6 pt-6 border-t border-white/15">
-          <span className="text-xs uppercase font-bold tracking-widest text-white/70 block">
+        {/* 3 Nilai Pokok Gerakan — Editorial Minimalis Murni (TANPA MODEL CARD) */}
+        <div className="space-y-8 pt-8 border-t border-white/15">
+          <span className="text-xs uppercase font-bold tracking-widest text-white/60 block">
             {t.about.valuesTag}
           </span>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-8 rounded-2xl bg-black/25 border border-white/15 space-y-3">
-              <span className="text-xs font-bold uppercase tracking-wider text-white/60 block">01 • Bahasa</span>
-              <h3 className="font-bold text-lg text-white">{t.about.v1Title}</h3>
-              <p className="text-xs sm:text-sm text-white/80 leading-relaxed">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
+            
+            {/* 01 */}
+            <div className="space-y-3">
+              <span className="text-3xl font-light text-white/40 block font-mono">01</span>
+              <h3 className="text-lg font-bold text-white tracking-tight">
+                {t.about.v1Title}
+              </h3>
+              <p className="text-sm text-white/75 leading-relaxed font-light">
                 {t.about.v1Desc}
               </p>
             </div>
 
-            <div className="p-8 rounded-2xl bg-black/25 border border-white/15 space-y-3">
-              <span className="text-xs font-bold uppercase tracking-wider text-white/60 block">02 • Pemuda</span>
-              <h3 className="font-bold text-lg text-white">{t.about.v2Title}</h3>
-              <p className="text-xs sm:text-sm text-white/80 leading-relaxed">
+            {/* 02 */}
+            <div className="space-y-3">
+              <span className="text-3xl font-light text-white/40 block font-mono">02</span>
+              <h3 className="text-lg font-bold text-white tracking-tight">
+                {t.about.v2Title}
+              </h3>
+              <p className="text-sm text-white/75 leading-relaxed font-light">
                 {t.about.v2Desc}
               </p>
             </div>
 
-            <div className="p-8 rounded-2xl bg-black/25 border border-white/15 space-y-3">
-              <span className="text-xs font-bold uppercase tracking-wider text-white/60 block">03 • Kolaborasi</span>
-              <h3 className="font-bold text-lg text-white">{t.about.v3Title}</h3>
-              <p className="text-xs sm:text-sm text-white/80 leading-relaxed">
+            {/* 03 */}
+            <div className="space-y-3">
+              <span className="text-3xl font-light text-white/40 block font-mono">03</span>
+              <h3 className="text-lg font-bold text-white tracking-tight">
+                {t.about.v3Title}
+              </h3>
+              <p className="text-sm text-white/75 leading-relaxed font-light">
                 {t.about.v3Desc}
               </p>
             </div>
+
           </div>
         </div>
 
-        {/* Visi & Misi Card */}
-        <div className="p-8 sm:p-12 rounded-3xl bg-black/30 border border-white/20 space-y-6 shadow-xl">
-          <span className="text-xs uppercase font-bold tracking-widest text-white/70 block">
+        {/* Visi Jangka Panjang — Tipografi Besar Organik (TANPA MODEL CARD / BOX) */}
+        <div className="pt-10 pb-4 border-t border-white/15 space-y-8">
+          <span className="text-xs uppercase font-bold tracking-widest text-white/60 block">
             {t.about.visionTag}
           </span>
-          <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white leading-snug">
+          
+          <p className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-[1.18] tracking-tight max-w-4xl">
             {t.about.visionQuote}
           </p>
-          <div className="pt-4 border-t border-white/10 flex flex-wrap gap-4 items-center">
+
+          <div className="pt-4 flex flex-wrap gap-4 items-center">
             <a
               href="mailto:indonesia@climatecardinals.org"
-              className="bg-white text-black hover:bg-stone-100 text-xs sm:text-sm font-bold px-7 py-3.5 rounded-full transition-colors inline-flex items-center gap-2 cursor-pointer"
+              className="bg-white text-black hover:bg-stone-100 text-xs sm:text-sm font-semibold px-8 py-3.5 rounded-full transition-all inline-flex items-center gap-2 cursor-pointer shadow-md"
             >
               <Mail className="w-4 h-4" />
               <span>{t.about.emailBtn}</span>
@@ -101,7 +114,7 @@ export default function TentangPage() {
               href="https://instagram.com/climatecardinals.id"
               target="_blank"
               rel="noopener noreferrer"
-              className="border border-white/60 hover:bg-white/10 text-white text-xs sm:text-sm font-medium px-7 py-3.5 rounded-full transition-colors inline-flex items-center gap-2 cursor-pointer"
+              className="border border-white/60 hover:bg-white/10 text-white text-xs sm:text-sm font-medium px-8 py-3.5 rounded-full transition-all inline-flex items-center gap-2 cursor-pointer"
             >
               <Instagram className="w-4 h-4" />
               <span>{t.about.dmBtn}</span>

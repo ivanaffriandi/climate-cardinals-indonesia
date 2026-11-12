@@ -57,7 +57,6 @@ export default function Navigation() {
   // - Mengembalikan warna status bar secara presisi saat menu ditutup
   useEffect(() => {
     const updateTheme = (color: string) => {
-      // 1. Update <meta name="theme-color"> untuk Safari iOS & Chrome Android
       let metaTheme = document.querySelector('meta[name="theme-color"]');
       if (!metaTheme) {
         metaTheme = document.createElement('meta');
@@ -66,7 +65,6 @@ export default function Navigation() {
       }
       metaTheme.setAttribute('content', color);
 
-      // 2. Sinkronkan background <html> & <body>
       document.documentElement.style.backgroundColor = color;
       document.body.style.backgroundColor = color;
     };
@@ -76,10 +74,8 @@ export default function Navigation() {
       return;
     }
 
-    // Set warna awal
     updateTheme(pageBgColor.get());
 
-    // Berlangganan perubahan scroll secara real-time
     const unsubscribe = pageBgColor.on('change', (latestColor) => {
       if (!menuOpen) {
         updateTheme(latestColor);
@@ -132,7 +128,7 @@ export default function Navigation() {
             </div>
           </Link>
 
-          {/* Right: Desktop Links & Clean Hamburger (Tanpa tombol bahasa di navbar) */}
+          {/* Right: Desktop Links & Clean Hamburger */}
           <div className="flex items-center gap-6 sm:gap-8 text-sm font-medium">
             <Link
               href="/tentang"
@@ -150,28 +146,28 @@ export default function Navigation() {
               {t.nav.contact}
             </Link>
 
-            {/* Clean 2-Line Hamburger Button (NO CIRCLE BORDER, ukuran w-10 h-10 presisi) */}
+            {/* Clean 2-Line Hamburger Button (Interactive micro-animation) */}
             <button
               onClick={() => setMenuOpen(true)}
-              className="w-10 h-10 flex flex-col items-end justify-center gap-1.5 p-2 text-white hover:opacity-80 transition-opacity focus:outline-none cursor-pointer"
+              className="w-10 h-10 flex flex-col items-end justify-center gap-1.5 p-2 text-white hover:opacity-80 transition-opacity focus:outline-none cursor-pointer group"
               aria-label="Buka Menu"
             >
-              <span className="w-6 h-[2px] bg-white rounded-full transition-all duration-200"></span>
-              <span className="w-4 h-[2px] bg-white rounded-full transition-all duration-200 group-hover:w-6"></span>
+              <span className="w-6 h-[2px] bg-white rounded-full transition-all duration-300 group-hover:scale-x-110 origin-right"></span>
+              <span className="w-4 h-[2px] bg-white rounded-full transition-all duration-300 group-hover:w-6 origin-right"></span>
             </button>
           </div>
 
         </div>
       </motion.header>
 
-      {/* Fullscreen Minimalist Menu Overlay (Deep Navy Blue dari logo) */}
+      {/* Fullscreen Minimalist Menu Overlay — Animasi Halus & Dinamis */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.22, ease: 'easeOut' }}
+            initial={{ opacity: 0, scale: 0.985 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.99 }}
+            transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
             className="fixed inset-0 z-50 bg-[#16276B] text-white flex flex-col justify-between overflow-y-auto no-scrollbar pt-[env(safe-area-inset-top,0px)] pb-[env(safe-area-inset-bottom,0px)]"
           >
             {/* Top Bar inside Menu: POSISI, PADDING, DAN UKURAN 100% PERSIS DENGAN NAVBAR UTAMA */}
@@ -203,14 +199,21 @@ export default function Navigation() {
                   </div>
                 </Link>
 
-                {/* Right: Tombol X Saja (Ukuran w-10 h-10 p-2 PERSIS dengan tombol hamburger) */}
+                {/* Right: Tombol X dengan Rotasi Halus (Smooth Spring Rotation) */}
                 <div className="flex items-center">
                   <button
                     onClick={() => setMenuOpen(false)}
                     className="w-10 h-10 flex items-center justify-center p-2 text-white hover:opacity-80 transition-opacity cursor-pointer focus:outline-none"
                     aria-label="Tutup Menu"
                   >
-                    <X className="w-6 h-6 text-white" strokeWidth={2} />
+                    <motion.div
+                      initial={{ rotate: -90, scale: 0.7, opacity: 0 }}
+                      animate={{ rotate: 0, scale: 1, opacity: 1 }}
+                      exit={{ rotate: 90, scale: 0.7, opacity: 0 }}
+                      transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                    >
+                      <X className="w-6 h-6 text-white" strokeWidth={2} />
+                    </motion.div>
                   </button>
                 </div>
 
@@ -218,10 +221,15 @@ export default function Navigation() {
             </div>
 
             {/* Center: Large Clean Typography Links & Controls */}
-            <div className="max-w-xl w-full mx-auto my-auto py-6 px-6 flex flex-col items-center justify-center text-center">
+            <div className="max-w-xl w-full mx-auto my-auto py-8 px-6 flex flex-col items-center justify-center text-center">
               
               {/* Language Switcher Segmented Control di dalam Menu */}
-              <div className="inline-flex items-center bg-black/30 p-1 rounded-full border border-white/15 mb-8">
+              <motion.div
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.08, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                className="inline-flex items-center bg-black/30 p-1 rounded-full border border-white/15 mb-8 shadow-sm"
+              >
                 <button
                   onClick={() => setLanguage('id')}
                   className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
@@ -238,9 +246,9 @@ export default function Navigation() {
                 >
                   English
                 </button>
-              </div>
+              </motion.div>
 
-              {/* Main Navigation Links */}
+              {/* Main Navigation Links (Silky Staggered Cascade) */}
               <motion.nav
                 initial="hidden"
                 animate="visible"
@@ -250,8 +258,8 @@ export default function Navigation() {
                   visible: {
                     opacity: 1,
                     transition: {
-                      staggerChildren: 0.05,
-                      delayChildren: 0.05,
+                      staggerChildren: 0.07,
+                      delayChildren: 0.1,
                     },
                   },
                 }}
@@ -263,11 +271,12 @@ export default function Navigation() {
                     <motion.div
                       key={item.label}
                       variants={{
-                        hidden: { opacity: 0, y: 12 },
+                        hidden: { opacity: 0, y: 24, filter: 'blur(6px)' },
                         visible: {
                           opacity: 1,
                           y: 0,
-                          transition: { duration: 0.28, ease: [0.16, 1, 0.3, 1] },
+                          filter: 'blur(0px)',
+                          transition: { duration: 0.42, ease: [0.16, 1, 0.3, 1] },
                         },
                       }}
                     >
@@ -288,31 +297,36 @@ export default function Navigation() {
               </motion.nav>
 
               {/* Official Link to climatecardinals.org */}
-              <div className="pt-8">
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.28, duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
+                className="pt-8"
+              >
                 <a
                   href="https://www.climatecardinals.org"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-xs sm:text-sm text-white/80 hover:text-white transition-all bg-white/10 hover:bg-white/20 border border-white/20 px-5 py-2.5 rounded-full group cursor-pointer"
+                  className="inline-flex items-center gap-2 text-xs sm:text-sm text-white/80 hover:text-white transition-all bg-white/10 hover:bg-white/20 border border-white/20 px-5 py-2.5 rounded-full group cursor-pointer shadow-sm"
                 >
                   <span>climatecardinals.org</span>
                   <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </a>
-              </div>
+              </motion.div>
 
-              {/* Thin Divider Line */}
+              {/* Thin Divider Line (Expanding smoothly from center) */}
               <motion.div
-                initial={{ opacity: 0, scaleX: 0.6 }}
-                animate={{ opacity: 1, scaleX: 1 }}
-                transition={{ delay: 0.2, duration: 0.25 }}
-                className="w-48 sm:w-64 h-px bg-white/20 my-6"
+                initial={{ scaleX: 0, opacity: 0 }}
+                animate={{ scaleX: 1, opacity: 1 }}
+                transition={{ delay: 0.32, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="w-48 sm:w-64 h-px bg-white/20 my-6 origin-center"
               />
 
               {/* Manifesto Tagline */}
               <motion.p
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.25, duration: 0.3 }}
+                transition={{ delay: 0.36, duration: 0.4 }}
                 className="text-xs sm:text-sm text-white/80 max-w-md mx-auto leading-relaxed font-light px-4"
               >
                 {language === 'id'
@@ -322,7 +336,12 @@ export default function Navigation() {
             </div>
 
             {/* Bottom Bar: Ultra Simple Single-line Footer inside Menu */}
-            <div className="w-full pb-6 px-6 lg:px-12 shrink-0">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.4 }}
+              className="w-full pb-6 px-6 lg:px-12 shrink-0"
+            >
               <div className="max-w-7xl mx-auto flex flex-row items-center justify-between text-[11px] text-white/60 pt-4 border-t border-white/10 whitespace-nowrap gap-2">
                 <span>© {new Date().getFullYear()} Climate Cardinals ID</span>
                 
@@ -336,7 +355,7 @@ export default function Navigation() {
                   <span>@climatecardinals.id</span>
                 </a>
               </div>
-            </div>
+            </motion.div>
 
           </motion.div>
         )}
