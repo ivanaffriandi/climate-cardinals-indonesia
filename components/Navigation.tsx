@@ -330,14 +330,14 @@ export default function Navigation() {
               transition={{ delay: 0.28, duration: 0.4 }}
               className="w-full px-6 lg:px-12 pb-6 shrink-0"
             >
-              {/* Language Toggle — simple ID / EN centered above footer */}
+              {/* Language Toggle — Minimalist Editorial Switcher (Tanpa Pillbar) */}
               <div className="flex justify-center mb-5">
-                <div className="inline-flex items-center bg-white/10 border border-white/15 rounded-full p-1 gap-0.5">
+                <div className="inline-flex items-center border border-white/20 p-0.5 gap-1">
                   <button
                     onClick={() => setLanguage('id')}
-                    className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-200 cursor-pointer ${
+                    className={`px-4 py-1.5 text-xs font-mono font-bold uppercase transition-all duration-150 cursor-pointer rounded-none ${
                       language === 'id'
-                        ? 'bg-white text-[#16276B] shadow-sm'
+                        ? 'bg-white text-[#16276B]'
                         : 'text-white/60 hover:text-white'
                     }`}
                   >
@@ -345,9 +345,9 @@ export default function Navigation() {
                   </button>
                   <button
                     onClick={() => setLanguage('en')}
-                    className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-200 cursor-pointer ${
+                    className={`px-4 py-1.5 text-xs font-mono font-bold uppercase transition-all duration-150 cursor-pointer rounded-none ${
                       language === 'en'
-                        ? 'bg-white text-[#16276B] shadow-sm'
+                        ? 'bg-white text-[#16276B]'
                         : 'text-white/60 hover:text-white'
                     }`}
                   >

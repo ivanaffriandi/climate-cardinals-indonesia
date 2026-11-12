@@ -80,6 +80,8 @@ export interface Translations {
     submittingBtn: string;
     successTitle: string;
     successDesc: string;
+    selectRoleBtn: string;
+    resetBtn: string;
     roles: { value: string; label: string }[];
     roleDescriptions: { title: string; desc: string }[];
   };
@@ -163,6 +165,8 @@ const translations: Record<Language, Translations> = {
       submittingBtn: 'Mengirim...',
       successTitle: 'Pendaftaran Terkirim!',
       successDesc: 'Terima kasih sudah mendaftar. Kami akan menghubungimu melalui email dalam waktu dekat.',
+      selectRoleBtn: 'Pilih Peran Ini',
+      resetBtn: 'Kirim Pendaftaran Lain',
       roles: [
         { value: 'content', label: 'Content Writer' },
         { value: 'social-media', label: 'Social Media' },
@@ -277,6 +281,8 @@ const translations: Record<Language, Translations> = {
       submittingBtn: 'Sending...',
       successTitle: 'Application Sent!',
       successDesc: 'Thank you for applying. We\'ll reach out via email soon.',
+      selectRoleBtn: 'Select This Role',
+      resetBtn: 'Submit Another Application',
       roles: [
         { value: 'content', label: 'Content Writer' },
         { value: 'social-media', label: 'Social Media' },

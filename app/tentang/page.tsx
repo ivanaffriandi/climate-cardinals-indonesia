@@ -105,16 +105,17 @@ export default function TentangPage() {
           <div className="pt-4 flex flex-wrap gap-4 items-center">
             <a
               href="mailto:indonesia@climatecardinals.org"
-              className="bg-white text-black hover:bg-stone-100 text-xs sm:text-sm font-semibold px-8 py-3.5 rounded-full transition-all inline-flex items-center gap-2 cursor-pointer shadow-md"
+              className="bg-white text-[#16276B] hover:bg-white/90 text-xs font-bold uppercase tracking-widest px-8 py-4 transition-all inline-flex items-center gap-3 cursor-pointer rounded-none group"
             >
               <Mail className="w-4 h-4" />
               <span>{t.about.emailBtn}</span>
+              <span className="group-hover:translate-x-1 transition-transform">→</span>
             </a>
             <a
               href="https://instagram.com/climatecardinals.id"
               target="_blank"
               rel="noopener noreferrer"
-              className="border border-white/60 hover:bg-white/10 text-white text-xs sm:text-sm font-medium px-8 py-3.5 rounded-full transition-all inline-flex items-center gap-2 cursor-pointer"
+              className="border border-white/40 hover:border-white text-white hover:bg-white/5 text-xs font-medium uppercase tracking-widest px-8 py-4 transition-all inline-flex items-center gap-2 cursor-pointer rounded-none"
             >
               <Instagram className="w-4 h-4" />
               <span>{t.about.dmBtn}</span>

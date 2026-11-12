@@ -44,20 +44,21 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* Action Buttons: Solid White Pill & Clean Outline */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
+            {/* Action Buttons: Minimalist Editorial Geometry (Tanpa Pillbar) */}
+            <div className="flex flex-wrap items-center gap-4 pt-2">
               <Link
                 href="/tentang"
-                className="bg-white text-black hover:bg-stone-100 text-sm font-semibold px-8 py-3.5 rounded-full transition-all inline-block shadow-md cursor-pointer"
+                className="bg-white text-[#16276B] hover:bg-white/90 text-xs font-bold uppercase tracking-widest px-8 py-4 transition-all inline-flex items-center gap-3 cursor-pointer rounded-none group"
               >
-                {t.hero.btnAbout}
+                <span>{t.hero.btnAbout}</span>
+                <span className="group-hover:translate-x-1 transition-transform">→</span>
               </Link>
 
               <a
                 href="#kontak"
-                className="border border-white/60 hover:bg-white/10 text-white text-sm font-medium px-8 py-3.5 rounded-full transition-all inline-block cursor-pointer"
+                className="border border-white/40 hover:border-white text-white hover:bg-white/5 text-xs font-medium uppercase tracking-widest px-8 py-4 transition-all inline-flex items-center gap-3 cursor-pointer rounded-none"
               >
-                {t.hero.btnContact}
+                <span>{t.hero.btnContact}</span>
               </a>
             </div>
           </div>
@@ -84,10 +85,11 @@ export default function HomePage() {
           <div className="flex flex-wrap items-center gap-4 shrink-0">
             <a
               href="mailto:indonesia@climatecardinals.org"
-              className="bg-black text-white hover:bg-stone-900 text-sm font-semibold px-8 py-3.5 rounded-full transition-all cursor-pointer inline-flex items-center gap-2 shadow-md border border-white/20"
+              className="bg-white text-[#16276B] hover:bg-white/90 text-xs font-bold uppercase tracking-widest px-8 py-4 transition-all cursor-pointer inline-flex items-center gap-3 rounded-none group"
             >
               <Mail className="w-4 h-4" />
               <span>{t.contact.emailBtn}</span>
+              <span className="group-hover:translate-x-1 transition-transform">→</span>
             </a>
           </div>
         </div>
