@@ -8,6 +8,7 @@ export interface Translations {
   nav: {
     home: string;
     about: string;
+    join: string;
     contact: string;
     globalChapter: string;
     visitGlobal: string;
@@ -59,6 +60,30 @@ export interface Translations {
     emailBtn: string;
     dmBtn: string;
   };
+  join: {
+    tag: string;
+    title: string;
+    subtitle: string;
+    rolesTag: string;
+    formTitle: string;
+    fieldName: string;
+    fieldNamePlaceholder: string;
+    fieldEmail: string;
+    fieldEmailPlaceholder: string;
+    fieldCity: string;
+    fieldCityPlaceholder: string;
+    fieldRole: string;
+    fieldRolePlaceholder: string;
+    fieldMotivation: string;
+    fieldMotivationPlaceholder: string;
+    submitBtn: string;
+    submittingBtn: string;
+    successTitle: string;
+    successDesc: string;
+    roles: { value: string; label: string }[];
+    roleDescriptions: { title: string; desc: string }[];
+  };
+  devBanner: string;
 }
 
 const translations: Record<Language, Translations> = {
@@ -66,6 +91,7 @@ const translations: Record<Language, Translations> = {
     nav: {
       home: 'Beranda',
       about: 'Tentang Kami',
+      join: 'Bergabung',
       contact: 'Kontak',
       globalChapter: 'Chapter Resmi Climate Cardinals',
       visitGlobal: 'Web Global ↗',
@@ -113,15 +139,73 @@ const translations: Record<Language, Translations> = {
       v3Title: '100% Nirlaba & Terbuka',
       v3Desc: 'Gerakan independen non-partisan yang siap berkolaborasi dengan sekolah, kampus, dan inisiatif lingkungan lokal.',
       visionTag: 'Visi Jangka Panjang',
-      visionQuote: '“Terwujudnya generasi muda Indonesia yang berdaya, melek sains krisis iklim secara kritis, dan memimpin keadilan lingkungan yang berkelanjutan.”',
+      visionQuote: '"Terwujudnya generasi muda Indonesia yang berdaya, melek sains krisis iklim secara kritis, dan memimpin keadilan lingkungan yang berkelanjutan."',
       emailBtn: 'Hubungi Kami via Email',
       dmBtn: 'DM Instagram',
     },
+    join: {
+      tag: 'Open Recruitment',
+      title: 'Bergabung Bersama Kami',
+      subtitle: 'Jadilah bagian dari gerakan pemuda iklim terbesar di Indonesia. Kami mencari individu yang bersemangat untuk membuat perbedaan nyata.',
+      rolesTag: 'Peran yang Tersedia',
+      formTitle: 'Daftarkan Dirimu',
+      fieldName: 'Nama Lengkap',
+      fieldNamePlaceholder: 'Masukkan nama lengkapmu',
+      fieldEmail: 'Alamat Email',
+      fieldEmailPlaceholder: 'nama@email.com',
+      fieldCity: 'Domisili / Kota',
+      fieldCityPlaceholder: 'Misal: Jakarta, Bandung, Surabaya...',
+      fieldRole: 'Peran yang Diminati',
+      fieldRolePlaceholder: 'Pilih peran...',
+      fieldMotivation: 'Motivasi Bergabung',
+      fieldMotivationPlaceholder: 'Ceritakan mengapa kamu ingin bergabung dan apa yang ingin kamu kontribusikan...',
+      submitBtn: 'Kirim Pendaftaran',
+      submittingBtn: 'Mengirim...',
+      successTitle: 'Pendaftaran Terkirim!',
+      successDesc: 'Terima kasih sudah mendaftar. Kami akan menghubungimu melalui email dalam waktu dekat.',
+      roles: [
+        { value: 'content', label: 'Content Writer' },
+        { value: 'social-media', label: 'Social Media' },
+        { value: 'design', label: 'Desainer Grafis' },
+        { value: 'research', label: 'Peneliti & Penerjemah' },
+        { value: 'event', label: 'Koordinator Event' },
+        { value: 'outreach', label: 'Outreach & Komunitas' },
+        { value: 'other', label: 'Lainnya' },
+      ],
+      roleDescriptions: [
+        {
+          title: 'Content Writer',
+          desc: 'Menulis artikel, rangkuman riset iklim, dan materi edukasi yang mudah dipahami publik luas.',
+        },
+        {
+          title: 'Social Media',
+          desc: 'Mengelola konten dan strategi media sosial untuk memperluas jangkauan gerakan iklim di Indonesia.',
+        },
+        {
+          title: 'Desainer Grafis',
+          desc: 'Menciptakan visual yang kuat dan konsisten untuk kampanye edukasi dan materi publikasi kami.',
+        },
+        {
+          title: 'Peneliti & Penerjemah',
+          desc: 'Menerjemahkan dan menyederhanakan riset iklim global ke Bahasa Indonesia dan bahasa daerah.',
+        },
+        {
+          title: 'Koordinator Event',
+          desc: 'Merencanakan dan mengelola lokakarya, diskusi, dan aksi lapangan bersama komunitas.',
+        },
+        {
+          title: 'Outreach & Komunitas',
+          desc: 'Membangun relasi dengan sekolah, kampus, dan komunitas lokal di seluruh penjuru nusantara.',
+        },
+      ],
+    },
+    devBanner: '🚧 Website ini masih dalam pengembangan — beberapa fitur belum aktif.',
   },
   en: {
     nav: {
       home: 'Home',
       about: 'About Us',
+      join: 'Join Us',
       contact: 'Contact',
       globalChapter: 'Official Chapter of Climate Cardinals',
       visitGlobal: 'Global Web ↗',
@@ -139,7 +223,7 @@ const translations: Record<Language, Translations> = {
     globalBanner: {
       tag: 'Global Affiliation',
       title: 'Part of a Worldwide Youth Climate Movement',
-      desc: 'Climate Cardinals is the world’s largest youth-led non-profit working to make the climate movement accessible by translating climate information into 100+ languages, partnering with UNEP, Google, and global leaders.',
+      desc: 'Climate Cardinals is the world\'s largest youth-led non-profit working to make the climate movement accessible by translating climate information into 100+ languages, partnering with UNEP, Google, and global leaders.',
       linkText: 'Visit Global Website (climatecardinals.org) ↗',
     },
     contact: {
@@ -169,10 +253,67 @@ const translations: Record<Language, Translations> = {
       v3Title: '100% Non-Profit & Open',
       v3Desc: 'A non-partisan, open movement ready to collaborate with schools, institutions, and grassroots green initiatives.',
       visionTag: 'Long-Term Vision',
-      visionQuote: '“Empowering Indonesian youth with critical climate literacy to spearhead sustainable, grassroots environmental justice.”',
+      visionQuote: '"Empowering Indonesian youth with critical climate literacy to spearhead sustainable, grassroots environmental justice."',
       emailBtn: 'Contact via Email',
       dmBtn: 'DM on Instagram',
     },
+    join: {
+      tag: 'Open Recruitment',
+      title: 'Join Our Movement',
+      subtitle: 'Become part of Indonesia\'s leading youth climate movement. We\'re looking for passionate individuals ready to make a real difference.',
+      rolesTag: 'Available Roles',
+      formTitle: 'Apply Now',
+      fieldName: 'Full Name',
+      fieldNamePlaceholder: 'Enter your full name',
+      fieldEmail: 'Email Address',
+      fieldEmailPlaceholder: 'name@email.com',
+      fieldCity: 'City / Location',
+      fieldCityPlaceholder: 'e.g. Jakarta, Bandung, Surabaya...',
+      fieldRole: 'Role of Interest',
+      fieldRolePlaceholder: 'Select a role...',
+      fieldMotivation: 'Your Motivation',
+      fieldMotivationPlaceholder: 'Tell us why you want to join and what you\'d like to contribute...',
+      submitBtn: 'Submit Application',
+      submittingBtn: 'Sending...',
+      successTitle: 'Application Sent!',
+      successDesc: 'Thank you for applying. We\'ll reach out via email soon.',
+      roles: [
+        { value: 'content', label: 'Content Writer' },
+        { value: 'social-media', label: 'Social Media' },
+        { value: 'design', label: 'Graphic Designer' },
+        { value: 'research', label: 'Researcher & Translator' },
+        { value: 'event', label: 'Event Coordinator' },
+        { value: 'outreach', label: 'Outreach & Community' },
+        { value: 'other', label: 'Other' },
+      ],
+      roleDescriptions: [
+        {
+          title: 'Content Writer',
+          desc: 'Write articles, climate research summaries, and educational materials in accessible language for the public.',
+        },
+        {
+          title: 'Social Media',
+          desc: 'Manage content and strategy across social media platforms to expand the reach of Indonesia\'s climate movement.',
+        },
+        {
+          title: 'Graphic Designer',
+          desc: 'Create compelling, consistent visuals for education campaigns and our publication materials.',
+        },
+        {
+          title: 'Researcher & Translator',
+          desc: 'Translate and simplify global climate research into Indonesian and regional languages.',
+        },
+        {
+          title: 'Event Coordinator',
+          desc: 'Plan and manage workshops, discussions, and field actions with community partners.',
+        },
+        {
+          title: 'Outreach & Community',
+          desc: 'Build relationships with schools, universities, and local communities across the archipelago.',
+        },
+      ],
+    },
+    devBanner: '🚧 This website is still under development — some features are not yet active.',
   },
 };
 
@@ -230,4 +371,3 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 export function useLanguage() {
   return useContext(LanguageContext);
 }
-
