@@ -5,13 +5,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { X, Instagram, Globe, ArrowUpRight } from 'lucide-react';
+import { X, Instagram, ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '@/lib/LanguageContext';
 
 export default function Navigation() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const { language, setLanguage, toggleLanguage, t } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
 
   // Lock body scroll when menu is open
   useEffect(() => {
@@ -101,8 +101,8 @@ export default function Navigation() {
             </div>
           </Link>
 
-          {/* Right: Desktop Links, Language Switcher, & Hamburger */}
-          <div className="flex items-center gap-5 sm:gap-7 text-sm font-medium">
+          {/* Right: Desktop Links & Clean Hamburger (Tanpa tombol bahasa di navbar) */}
+          <div className="flex items-center gap-6 sm:gap-8 text-sm font-medium">
             <Link
               href="/tentang"
               className={`hidden md:inline-block transition-colors ${
@@ -118,19 +118,6 @@ export default function Navigation() {
             >
               {t.nav.contact}
             </Link>
-
-            {/* Quick Language Switcher Button (ID / EN) */}
-            <button
-              onClick={toggleLanguage}
-              className="px-2.5 py-1 rounded-full border border-white/25 hover:border-white/60 bg-black/10 hover:bg-black/20 text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer"
-              title="Ganti Bahasa / Switch Language"
-              aria-label="Switch Language"
-            >
-              <Globe className="w-3.5 h-3.5 text-white/80" />
-              <span className={language === 'id' ? 'text-white font-bold' : 'text-white/50'}>ID</span>
-              <span className="text-white/30 text-[10px]">/</span>
-              <span className={language === 'en' ? 'text-white font-bold' : 'text-white/50'}>EN</span>
-            </button>
 
             {/* Clean 2-Line Hamburger Button (NO CIRCLE BORDER, ukuran w-10 h-10 presisi) */}
             <button
@@ -202,11 +189,11 @@ export default function Navigation() {
             {/* Center: Large Clean Typography Links & Controls */}
             <div className="max-w-xl w-full mx-auto my-auto py-6 px-6 flex flex-col items-center justify-center text-center">
               
-              {/* Language Switcher Segmented Control */}
+              {/* Language Switcher Segmented Control di dalam Menu */}
               <div className="inline-flex items-center bg-black/30 p-1 rounded-full border border-white/15 mb-8">
                 <button
                   onClick={() => setLanguage('id')}
-                  className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                  className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                     language === 'id' ? 'bg-white text-black shadow-sm font-bold' : 'text-white/70 hover:text-white'
                   }`}
                 >
@@ -214,7 +201,7 @@ export default function Navigation() {
                 </button>
                 <button
                   onClick={() => setLanguage('en')}
-                  className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                  className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                     language === 'en' ? 'bg-white text-black shadow-sm font-bold' : 'text-white/70 hover:text-white'
                   }`}
                 >
@@ -269,15 +256,15 @@ export default function Navigation() {
                 })}
               </motion.nav>
 
-              {/* Global Chapter Link */}
+              {/* Official Link to climatecardinals.org */}
               <div className="pt-8">
                 <a
                   href="https://www.climatecardinals.org"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-xs sm:text-sm text-white/80 hover:text-white transition-all bg-white/10 hover:bg-white/20 border border-white/20 px-5 py-2.5 rounded-full group"
+                  className="inline-flex items-center gap-2 text-xs sm:text-sm text-white/80 hover:text-white transition-all bg-white/10 hover:bg-white/20 border border-white/20 px-5 py-2.5 rounded-full group cursor-pointer"
                 >
-                  <span>Climate Cardinals Global (HQ)</span>
+                  <span>climatecardinals.org</span>
                   <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </a>
               </div>

@@ -26,7 +26,7 @@ export default function TentangPage() {
               rel="noopener noreferrer"
               className="text-xs text-white/70 hover:text-white flex items-center gap-1 transition-colors underline"
             >
-              <span>Climate Cardinals Global</span>
+              <span>climatecardinals.org</span>
               <ArrowUpRight className="w-3 h-3" />
             </a>
           </div>

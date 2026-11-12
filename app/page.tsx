@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Instagram, Mail, ArrowUpRight, Globe } from 'lucide-react';
+import { Instagram, Mail } from 'lucide-react';
 import { useLanguage } from '@/lib/LanguageContext';
 
 export default function HomePage() {
@@ -11,22 +11,9 @@ export default function HomePage() {
   return (
     <div className="text-white min-h-[calc(100vh-80px)] flex flex-col justify-between bg-transparent">
       
-      {/* 1. HERO SECTION — Natural, Minimalis, Layar Awal 100% Merah Solid */}
-      <section className="pt-12 pb-20 md:pt-20 md:pb-28 max-w-7xl mx-auto px-6 lg:px-12 w-full flex-1 flex flex-col justify-center">
+      {/* 1. HERO SECTION — Natural, Minimalis, Tipografi Murni, Layar Awal 100% Merah Solid */}
+      <section className="pt-16 pb-24 md:pt-24 md:pb-36 max-w-7xl mx-auto px-6 lg:px-12 w-full flex-1 flex flex-col justify-center">
         
-        {/* Badge Afiliasi Chapter Resmi Global */}
-        <div className="mb-6">
-          <a
-            href="https://www.climatecardinals.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-xs font-semibold text-white/90 hover:text-white bg-black/20 hover:bg-black/35 border border-white/20 px-4 py-2 rounded-full transition-all group cursor-pointer"
-          >
-            <span>{t.hero.badge}</span>
-            <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </a>
-        </div>
-
         {/* Slogan 2 Baris Bersih */}
         <div className="max-w-4xl space-y-2">
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] text-white">
@@ -38,7 +25,7 @@ export default function HomePage() {
         </div>
 
         {/* Asymmetrical Line Annotations & Two Human Paragraphs */}
-        <div className="mt-12 sm:mt-14 grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+        <div className="mt-14 grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
           
           {/* Kolom Kiri: Garis Tipis 1 */}
           <div className="md:col-span-5 flex items-start gap-3">
@@ -79,35 +66,8 @@ export default function HomePage() {
 
       </section>
 
-      {/* 2. GLOBAL CHAPTER CONNECTION BANNER — Menghubungkan ke Gerakan Global */}
-      <section className="py-12 max-w-7xl mx-auto px-6 lg:px-12 w-full">
-        <div className="p-8 sm:p-10 rounded-3xl bg-black/25 border border-white/15 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div className="space-y-2 max-w-2xl">
-            <div className="flex items-center gap-2 text-white/70 text-xs font-bold uppercase tracking-wider">
-              <Globe className="w-3.5 h-3.5" />
-              <span>{t.globalBanner.tag}</span>
-            </div>
-            <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-              {t.globalBanner.title}
-            </h3>
-            <p className="text-xs sm:text-sm text-white/80 leading-relaxed">
-              {t.globalBanner.desc}
-            </p>
-          </div>
-
-          <a
-            href="https://www.climatecardinals.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="shrink-0 bg-white/10 hover:bg-white/20 border border-white/25 text-white text-xs sm:text-sm font-semibold px-6 py-3 rounded-full transition-all inline-flex items-center gap-2 group cursor-pointer"
-          >
-            <span>{t.globalBanner.linkText}</span>
-          </a>
-        </div>
-      </section>
-
-      {/* 3. HUBUNGI KAMI / KOLABORASI (#kontak) */}
-      <section id="kontak" className="py-20 max-w-7xl mx-auto px-6 lg:px-12 w-full">
+      {/* 2. HUBUNGI KAMI / KOLABORASI (#kontak) */}
+      <section id="kontak" className="py-24 max-w-7xl mx-auto px-6 lg:px-12 w-full">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pt-8 border-t border-white/15">
           <div className="space-y-2 max-w-xl">
             <span className="text-xs font-bold uppercase tracking-wider text-white/70 block">
@@ -118,17 +78,6 @@ export default function HomePage() {
             </h2>
             <p className="text-white/80 text-sm leading-relaxed">
               {t.contact.desc}
-            </p>
-            <p className="text-white/60 text-xs pt-1">
-              {t.contact.globalNote}{' '}
-              <a
-                href="https://www.climatecardinals.org/contact"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline hover:text-white transition-colors"
-              >
-                {t.contact.globalLinkText}
-              </a>
             </p>
           </div>
 
@@ -144,7 +93,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. FOOTNOTE ULTRA SIMPLE (Satu Baris Bersih & Anti-Overflow) */}
+      {/* 3. FOOTNOTE ULTRA SIMPLE (Satu Baris Bersih & Anti-Overflow) */}
       <footer className="border-t border-white/15 py-4 w-full">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-row items-center justify-between text-[11px] sm:text-xs text-white/70 whitespace-nowrap gap-2">
           <span>{t.footnote.copyright}</span>
