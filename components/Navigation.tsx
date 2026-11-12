@@ -34,60 +34,63 @@ export default function Navigation() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // Scroll color sync:
-  // - Top fold (scrollY 0 - 220px): 100% Solid Red (#D91A2A), belum gradasi sama sekali
-  // - Scroll down (220px - 680px): Berangsur-angsur bertransisi halus ke Deep Navy Blue (#16276B)
+  // Single Source of Truth Color Transformation:
+  // - Layar awal / hero (0 - 200px): Merah murni (#D91A2A)
+  // - Discroll ke bawah (200px - 700px): Bertransisi halus & serentak ke Deep Navy Blue (#16276B)
+  // - Melewati 700px: Navy Blue penuh (#16276B)
   const { scrollY } = useScroll();
 
-  const pageBgColor = useTransform(
+  const themeColor = useTransform(
     scrollY,
-    [0, 220, 680],
+    [0, 200, 700],
     ['#D91A2A', '#D91A2A', '#16276B']
   );
 
-  const navBgColor = useTransform(
-    scrollY,
-    [0, 220, 680],
-    ['rgba(217, 26, 42, 0.98)', 'rgba(217, 26, 42, 0.98)', 'rgba(22, 39, 107, 0.98)']
-  );
-
-  // Status Bar Adaptive Theme Color:
-  // - Instant, zero-lag, tidak ada throttling atau delay di iOS Safari
-  // - Di atas = Merah murni (#D91A2A)
-  // - Lewat hero / scroll ke bawah = Deep Navy Blue (#16276B)
-  // - Menu sidebar terbuka = Deep Navy Blue (#16276B)
-  // - Menu ditutup = langsung kembali otomatis ke warna posisi scroll saat itu
+  // Status Bar, Navbar, & Background Synchronizer (100% Selaras & Bebas Lag):
+  // Menjamin <meta name="theme-color">, <html>, <body>, navbar, dan background SELALU sinkron 1 warna bersamaan.
   useEffect(() => {
-    const applyThemeColor = (color: string) => {
-      let metaTheme = document.querySelector('meta[name="theme-color"]');
-      if (!metaTheme) {
-        metaTheme = document.createElement('meta');
-        metaTheme.setAttribute('name', 'theme-color');
-        document.head.appendChild(metaTheme);
-      }
-      if (metaTheme.getAttribute('content') !== color) {
-        metaTheme.setAttribute('content', color);
-      }
-      document.documentElement.style.backgroundColor = color;
-      document.body.style.backgroundColor = color;
+    let metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (!metaTheme) {
+      metaTheme = document.createElement('meta');
+      metaTheme.setAttribute('name', 'theme-color');
+      document.head.appendChild(metaTheme);
+    }
+
+    let rafId: number | null = null;
+    let lastColor = '';
+
+    const syncTheme = (color: string) => {
+      if (color === lastColor) return;
+      lastColor = color;
+
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        metaTheme?.setAttribute('content', color);
+        document.documentElement.style.backgroundColor = color;
+        document.body.style.backgroundColor = color;
+      });
     };
 
     if (menuOpen) {
-      applyThemeColor('#16276B');
+      syncTheme('#16276B');
       return;
     }
 
-    const updateScrollTheme = () => {
-      const y = window.scrollY || 0;
-      const targetColor = y > 250 ? '#16276B' : '#D91A2A';
-      applyThemeColor(targetColor);
+    // Set warna awal saat mount
+    syncTheme(themeColor.get());
+
+    // Berlangganan perubahan nilai MotionValue secara kontinu
+    const unsubscribe = themeColor.on('change', (latestColor) => {
+      if (!menuOpen) {
+        syncTheme(latestColor);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+      if (rafId) cancelAnimationFrame(rafId);
     };
-
-    updateScrollTheme();
-
-    window.addEventListener('scroll', updateScrollTheme, { passive: true });
-    return () => window.removeEventListener('scroll', updateScrollTheme);
-  }, [menuOpen]);
+  }, [menuOpen, themeColor]);
 
   const menuItems = [
     { label: t.nav.home, href: '/' },
@@ -97,16 +100,16 @@ export default function Navigation() {
 
   return (
     <>
-      {/* Dynamic Background Layer: Menempel di belakang seluruh halaman, mulus bertransisi */}
+      {/* Dynamic Background Layer: Menempel di belakang seluruh halaman, 100% sinkron */}
       <motion.div
-        style={{ backgroundColor: pageBgColor }}
-        className="fixed inset-0 -z-50 pointer-events-none transition-colors duration-100"
+        style={{ backgroundColor: themeColor }}
+        className="fixed inset-0 -z-50 pointer-events-none"
         aria-hidden="true"
       />
 
       {/* Top Navbar — Mengikuti Transisi Warna Latar, Mengisi Safe Area Status Bar */}
       <motion.header
-        style={{ backgroundColor: navBgColor }}
+        style={{ backgroundColor: themeColor }}
         className="w-full text-white sticky top-0 z-40 backdrop-blur-md pt-[env(safe-area-inset-top,0px)]"
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
