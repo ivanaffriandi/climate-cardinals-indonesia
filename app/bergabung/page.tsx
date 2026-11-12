@@ -135,26 +135,34 @@ export default function BergabungPage() {
                     className="w-full py-6 md:py-8 flex items-center justify-between text-left cursor-pointer group"
                     aria-expanded={isOpen}
                   >
-                    <div className="flex items-center gap-3 sm:gap-6 flex-wrap sm:flex-nowrap">
-                      <span className="text-xl sm:text-2xl font-bold text-white/50 group-hover:text-white/80 transition-colors">
-                        {num}
-                      </span>
-                      <h3 className="text-lg sm:text-2xl font-bold text-white tracking-tight group-hover:text-white transition-colors">
-                        {role.title}
-                      </h3>
-                      {/* Status Ketersediaan */}
-                      {isAvailable ? (
-                        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 border border-emerald-400/50 text-emerald-300 bg-emerald-950/40">
-                          ● {t.join.openStatus}
+                    <div className="flex-1 min-w-0 pr-4">
+                      <div className="flex items-center gap-3 sm:gap-5 flex-wrap">
+                        <span className="text-xl sm:text-2xl font-bold text-white/40 group-hover:text-white/80 transition-colors">
+                          {num}
                         </span>
-                      ) : (
-                        <span className="text-[10px] font-medium uppercase tracking-wider px-2 py-0.5 border border-white/10 text-white/40">
-                          ○ {t.join.closedStatus}
-                        </span>
-                      )}
+                        <h3
+                          className={`text-lg sm:text-2xl font-bold tracking-tight transition-colors ${
+                            isAvailable ? 'text-white' : 'text-white/75 group-hover:text-white'
+                          }`}
+                        >
+                          {role.title}
+                        </h3>
+
+                        {/* Status Ketersediaan — Tipografis Elegan & Minimalis (Tanpa Kotak Hijau) */}
+                        {isAvailable ? (
+                          <span className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold uppercase tracking-widest text-white">
+                            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                            {t.join.openStatus}
+                          </span>
+                        ) : (
+                          <span className="text-[11px] sm:text-xs uppercase tracking-widest text-white/35 font-normal">
+                            {t.join.closedStatus}
+                          </span>
+                        )}
+                      </div>
                     </div>
 
-                    <div className="p-2 border border-white/20 group-hover:border-white transition-colors shrink-0 rounded-none ml-4">
+                    <div className="p-2 border border-white/20 group-hover:border-white transition-colors shrink-0 rounded-none ml-2">
                       <ChevronDown
                         className={`w-4 h-4 text-white/70 group-hover:text-white transition-transform duration-300 ${
                           isOpen ? 'rotate-180' : ''
@@ -181,10 +189,10 @@ export default function BergabungPage() {
                             <button
                               type="button"
                               onClick={openModal}
-                              className="text-xs uppercase font-bold tracking-wider text-emerald-300 hover:text-white flex items-center gap-1.5 border-b border-emerald-400/40 hover:border-white pb-0.5 transition-all cursor-pointer group"
+                              className="inline-flex items-center gap-2 text-xs uppercase font-bold tracking-widest text-white hover:text-white/80 border-b border-white pb-1 transition-colors cursor-pointer group"
                             >
                               <span>{t.join.applyBtn} ({role.title})</span>
-                              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1.5 transition-transform" />
                             </button>
                           )}
                         </div>
@@ -324,7 +332,7 @@ export default function BergabungPage() {
                     </div>
                   </div>
 
-                  {/* Pemilihan Peran — Dropdown Kompak dengan Status Open/Closed */}
+                  {/* Pemilihan Peran — Dropdown Kompak Bersih Tanpa Indikator Kotak */}
                   <div className="relative group space-y-2">
                     <label className="text-xs uppercase font-bold tracking-wider text-white/80 block">
                       {t.join.fieldRole} *
@@ -334,11 +342,8 @@ export default function BergabungPage() {
                       onClick={() => setIsRoleDropdownOpen(!isRoleDropdownOpen)}
                       className="w-full bg-transparent border-0 border-b border-white/30 hover:border-white focus:border-white rounded-none px-0 py-2.5 text-base text-left flex items-center justify-between text-white transition-colors cursor-pointer"
                     >
-                      <span className="text-white font-medium flex items-center gap-2">
+                      <span className="text-white font-medium">
                         {selectedRoleLabel}
-                        <span className="text-[9px] font-bold uppercase tracking-wider text-emerald-300 border border-emerald-400/40 px-1.5 py-0.5">
-                          {t.join.openStatus}
-                        </span>
                       </span>
                       <ChevronDown
                         className={`w-4 h-4 text-white/60 transition-transform duration-200 ${
@@ -347,7 +352,7 @@ export default function BergabungPage() {
                       />
                     </button>
 
-                    {/* Menu Pilihan Peran Melayang */}
+                    {/* Menu Pilihan Peran Melayang — Bersih Tanpa Badge/Kotak */}
                     {isRoleDropdownOpen && (
                       <div className="absolute top-full left-0 right-0 mt-2 bg-[#080d24] border border-white/20 shadow-2xl z-30 divide-y divide-white/10 max-h-56 overflow-y-auto rounded-none">
                         {t.join.roles.map((r) => {
@@ -371,18 +376,7 @@ export default function BergabungPage() {
                                   : 'text-white/30 cursor-not-allowed bg-black/30'
                               }`}
                             >
-                              <div className="flex items-center gap-2">
-                                <span>{r.label}</span>
-                                {isAvailable ? (
-                                  <span className="text-[9px] font-bold text-emerald-300 border border-emerald-400/40 px-1.5 py-0.5">
-                                    {t.join.openStatus}
-                                  </span>
-                                ) : (
-                                  <span className="text-[9px] text-white/35">
-                                    ({t.join.closedStatus})
-                                  </span>
-                                )}
-                              </div>
+                              <span>{r.label}</span>
                               {formData.role === r.value && <Check className="w-4 h-4" />}
                             </button>
                           );
